@@ -1,0 +1,43 @@
+import pandas as pd
+
+data = {
+    "material_cost": [100, 200, 300, 400, 500, 600, 700, 800],
+    "labor_hours": [2, 3, 4, 6, 7, 9, 11, 13],
+    "complexity": [1, 1, 2, 2, 3, 3, 4, 5],
+    "selling_price": [250, 400, 550, 750, 900, 1150, 1400, 1650]
+}
+df = pd.DataFrame(data)
+# print(df)
+# print(df.describe())
+
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_absolute_error
+
+X = df[["material_cost", "labor_hours", "complexity"]]
+y = df["selling_price"]
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.25,
+    random_state=10
+)
+# print("TRAINING DATA:")
+# print(X_train)
+# print("\nTEST DATA:")
+# print(X_test)
+
+model = LinearRegression()
+model.fit(X_train, y_train)
+# print("Coefficients:", model.coef_)
+# print("Intercept:", model.intercept_)
+
+predictions = model.predict(X_test)
+# print("Actual prices:")
+# print(y_test)
+# print("Predicted prices:")
+# print(predictions)
+
+mae = mean_absolute_error(y_test, predictions)
+print("MAE:", mae)
