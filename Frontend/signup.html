@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create Account - Karukriti</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app-shell auth-shell">
+
+    <main class="auth-main">
+
+        <div class="auth-top">
+            <button class="auth-back" onclick="goTo('login.html')">←</button>
+
+            <div class="auth-mini-brand">
+                KARUKRITI
+            </div>
+
+            <span></span>
+        </div>
+
+        <section class="auth-content signup-content">
+
+            <div class="auth-welcome">
+                <span>CREATE YOUR PROFILE</span>
+                <h1>Start your<br>artisan journey.</h1>
+                <p>Tell us a little about yourself and your craft.</p>
+            </div>
+
+            <div id="signupMessage" class="auth-message"></div>
+
+            <div class="auth-form">
+
+                <div class="auth-field">
+
+    <label>
+        Artisan Name
+    </label>
+
+    <input
+        type="text"
+        id="signupName"
+        placeholder="e.g. Raj Kumar"
+    >
+
+</div>
+
+
+<div class="auth-field">
+
+    <label>
+        Mobile Number
+    </label>
+
+    <input
+        type="tel"
+        id="signupMobile"
+        placeholder="Enter mobile number"
+    >
+
+</div>
+
+
+<div class="auth-field">
+
+    <label>
+        Email Address
+    </label>
+
+    <input
+        type="email"
+        id="signupEmail"
+        placeholder="Enter email"
+    >
+
+</div>
+
+
+<div class="auth-field">
+
+    <label>
+        Craft Category
+    </label>
+
+    <select id="signupCategory">
+
+        <option value="">
+            Select your craft
+        </option>
+
+        <option value="Handicraft">
+            Handicraft
+        </option>
+
+        <option value="Jewellery">
+            Jewellery
+        </option>
+
+        <option value="Textile">
+            Textile
+        </option>
+
+        <option value="Pottery">
+            Pottery
+        </option>
+
+        <option value="Wood Craft">
+            Wood Craft
+        </option>
+
+    </select>
+
+</div>
+
+
+<div class="auth-field">
+
+    <label>
+        Location
+    </label>
+
+    <input
+        type="text"
+        id="signupLocation"
+        placeholder="e.g. West Bengal, India"
+    >
+
+</div>
+
+
+<div class="auth-field">
+
+    <label>
+        Age
+    </label>
+
+    <input
+        type="number"
+        id="signupAge"
+        placeholder="Enter your age"
+        min="18"
+        max="120"
+    >
+
+</div>
+
+
+<div class="auth-field">
+
+    <label>
+        Preferred Language
+    </label>
+
+    <select id="signupLanguage">
+
+        <option value="">
+            Select language
+        </option>
+
+        <option value="English">
+            English
+        </option>
+
+        <option value="Hindi">
+            Hindi
+        </option>
+
+        <option value="Bengali">
+            Bengali
+        </option>
+
+        <option value="Tamil">
+            Tamil
+        </option>
+
+        <option value="Telugu">
+            Telugu
+        </option>
+
+        <option value="Marathi">
+            Marathi
+        </option>
+
+        <option value="Gujarati">
+            Gujarati
+        </option>
+
+    </select>
+
+</div>
+
+
+<div class="auth-field">
+
+    <label>
+        Create Password
+    </label>
+
+    <div class="password-wrap">
+
+        <input
+            type="password"
+            id="signupPassword"
+            placeholder="Create a password"
+        >
+
+        <button
+            type="button"
+            onclick="togglePassword(
+                'signupPassword',
+                this
+            )"
+        >
+            Show
+        </button>
+
+    </div>
+
+</div>
+
+
+<button
+    class="auth-primary"
+    onclick="signupUser()"
+>
+    Create Account →
+</button>
+
+            </div>
+
+            <p class="auth-bottom">
+                Already have an account?
+                <button onclick="goTo('login.html')">Sign In</button>
+            </p>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

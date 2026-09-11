@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Karukriti - My Products</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+<div class="app-shell">
+
+
+    <!-- HEADER -->
+
+    <header class="top-header">
+
+        <div>
+
+            <div class="brand-small">
+                KARUKRITI
+            </div>
+
+            <div class="brand-tagline">
+                From Tradition to Tomorrow
+            </div>
+
+        </div>
+
+
+        <button
+            class="header-icon"
+            onclick="goTo('add-product.html')"
+        >
+            +
+        </button>
+
+    </header>
+
+
+
+    <!-- MAIN -->
+
+    <main class="products-main">
+
+
+        <!-- PAGE TITLE -->
+
+        <div class="products-heading">
+
+            <div>
+
+                <h1>
+                    My Products
+                </h1>
+
+                <p>
+                    Your digital shelf
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- SELLER CARD -->
+
+        <div class="seller-card">
+
+            <div class="seller-avatar">
+                A
+            </div>
+
+
+            <div class="seller-info">
+
+                <h2 id="sellerName">
+                    Artisan
+                </h2>
+
+                <p id="sellerCategory">
+                    Traditional Handicraft Artisan
+                </p>
+
+                <span id="sellerLocation">
+                    India
+                </span>
+
+            </div>
+
+
+            <div class="verified-mark">
+                ✓
+            </div>
+
+        </div>
+
+
+
+        <!-- STATS -->
+
+        <div class="stat-box">
+
+    <strong id="productCount">
+        0
+    </strong>
+
+    <span>
+        Products
+    </span>
+
+</div>
+
+
+
+    <div class="profile-stat">
+
+        <strong id="profileOrderCount">
+            0
+        </strong>
+
+        <span>
+            Orders
+        </span>
+
+    </div>
+
+
+    <div class="profile-stat">
+
+        <strong>
+            —
+        </strong>
+
+        <span>
+            Rating
+        </span>
+
+    </div>
+
+</div>
+
+        <!-- COLLECTION TITLE -->
+
+        <div class="section-heading">
+
+            <div>
+
+                <span>
+                    YOUR COLLECTION
+                </span>
+
+                <h2>
+                    Digital Shelf
+                </h2>
+
+            </div>
+
+
+            <button
+                onclick="goTo('add-product.html')"
+            >
+                + Add
+            </button>
+
+        </div>
+
+
+
+        <!-- PRODUCT LIST -->
+
+        <div
+        id="productList"
+        class="product-grid">
+        </div>
+
+
+
+        <!-- EMPTY STATE -->
+
+        <section
+            id="emptyProducts"
+            class="empty-products"
+            style="display: none;"
+        >
+
+            <div class="empty-icon">
+                🧺
+            </div>
+
+            <h3>
+                Your shelf is empty
+            </h3>
+
+            <p>
+                Start creating your first smart catalog.
+            </p>
+
+
+            <button
+                class="primary-btn"
+                onclick="goTo('add-product.html')"
+            >
+                Add Product
+            </button>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- BOTTOM NAV -->
+
+    <nav class="bottom-nav">
+
+
+        <button
+            class="nav-item"
+            onclick="goTo('index.html')"
+        >
+
+            <span>⌂</span>
+
+            <small>
+                Home
+            </small>
+
+        </button>
+
+
+
+        <button
+            class="nav-item active"
+            onclick="goTo('products.html')"
+        >
+
+            <span>▣</span>
+
+            <small>
+                Products
+            </small>
+
+        </button>
+
+
+
+        <button
+            class="nav-add"
+            onclick="goTo('add-product.html')"
+        >
+
+            <span>
+                +
+            </span>
+
+        </button>
+
+
+
+        <button
+            class="nav-item"
+            onclick="goTo('orders.html')"
+        >
+
+            <span>♧</span>
+
+            <small>
+                Orders
+            </small>
+
+        </button>
+
+
+
+        <button
+            class="nav-item"
+            onclick="goTo('profile.html')"
+        >
+
+            <span>♙</span>
+
+            <small>
+                Profile
+            </small>
+
+        </button>
+
+
+    </nav>
+
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

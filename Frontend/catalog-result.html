@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Smart Catalog - Karukriti</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="app-shell">
+
+
+    <!-- HEADER -->
+
+    <header class="top-header">
+
+        <button
+            class="header-icon"
+            onclick="goTo('add-product.html')"
+        >
+            ←
+        </button>
+
+        <div class="brand-small">
+            KARUKRITI
+        </div>
+
+        <span></span>
+
+    </header>
+
+
+    <!-- MAIN -->
+
+    <main class="catalog-main">
+
+
+        <h1 class="catalog-title">
+            Your smart<br>
+            catalog is ready.
+        </h1>
+
+
+        <p class="catalog-subtitle">
+            Review the information generated
+            for your product.
+        </p>
+
+
+        <!-- PRODUCT CARD -->
+
+        <div class="catalog-card">
+
+
+            <!-- IMAGE -->
+
+            <div class="catalog-image-wrap">
+
+                <img
+                    id="resultImage"
+                    src=""
+                    alt="Product image"
+                >
+
+                <div class="ai-photo-badge">
+                    ✦ AI ENHANCED
+                </div>
+
+            </div>
+
+
+            <!-- CONTENT -->
+
+            <div class="catalog-content">
+
+
+                <span
+                    id="resultCategory"
+                    class="catalog-category"
+                >
+                    Category
+                </span>
+
+
+                <h2 id="resultName">
+                    Product Name
+                </h2>
+
+
+                <p id="resultDescription">
+                    Product description
+                </p>
+
+
+                <!-- PRICE -->
+
+                <div class="price-section">
+
+                    <div>
+
+                        <span class="price-label">
+                            Recommended Price
+                        </span>
+
+                        <strong id="recommendedPrice">
+                            ₹0
+                        </strong>
+
+                    </div>
+
+
+                    <span class="price-tag">
+                        SMART PRICE
+                    </span>
+
+                </div>
+
+
+                <!-- MARKET RANGE -->
+
+                <div class="market-range">
+
+                    <span>
+                        Market range
+                    </span>
+
+                    <strong>
+
+                        ₹<span id="marketMin">
+                            0
+                        </span>
+
+                        -
+
+                        ₹<span id="marketMax">
+                            0
+                        </span>
+
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- FEATURES -->
+
+        <div class="catalog-features">
+
+            <div class="feature-item">
+
+                <div class="feature-icon">
+                    ✓
+                </div>
+
+                <div>
+
+                    <strong>
+                        Product Catalog
+                    </strong>
+
+                    <span>
+                        Details prepared successfully
+                    </span>
+
+                </div>
+
+                <b>
+                    ✓
+                </b>
+
+            </div>
+
+
+            <div class="feature-item">
+
+                <div class="feature-icon">
+                    ₹
+                </div>
+
+                <div>
+
+                    <strong>
+                        Smart Pricing
+                    </strong>
+
+                    <span>
+                        Recommended market price generated
+                    </span>
+
+                </div>
+
+                <b>
+                    ✓
+                </b>
+
+            </div>
+
+
+            <div class="feature-item">
+
+                <div class="feature-icon">
+                    AI
+                </div>
+
+                <div>
+
+                    <strong>
+                        AI Assistance
+                    </strong>
+
+                    <span>
+                        Ready for marketplace publishing
+                    </span>
+
+                </div>
+
+                <b>
+                    ✓
+                </b>
+
+            </div>
+
+        </div>
+
+
+        <!-- PUBLISH -->
+
+        <button
+            class="publish-button"
+            onclick="publishProduct()"
+        >
+            Publish Product
+            <span>→</span>
+        </button>
+
+
+        <button
+            class="edit-catalog-button"
+            onclick="goTo('add-product.html')"
+        >
+            ← Edit Catalog
+        </button>
+
+
+    </main>
+
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

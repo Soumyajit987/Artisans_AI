@@ -1,0 +1,525 @@
+item_type,material_type,labor_hours,quantity,finish_type,urgency_level,price,length,width,height
+brass showpiece,engineered wood,16.3,1,melamine,rush,18500.0,83,30,89
+cane stool,glass,9.8,1,pu polish,standard,6500.0,13,33,44
+bed frame,aluminium,4.0,1,pu polish,standard,8300.0,60,36,73
+wooden partition,glass,21.4,1,raw,rush,16900.0,75,12,65
+teak rocking chair,iron,23.3,1,gloss,standard,15300.0,64,11,74
+glass coffee table,teak wood,26.4,1,raw,express,20300.0,15,11,20
+wooden partition,iron,16.0,1,gloss,express,15200.0,85,45,28
+bed frame,particle board,28.1,4,pu polish,standard,55400.0,64,33,40
+teak rocking chair,teak wood,2.2,1,matte,rush,4500.0,20,33,15
+glass coffee table,glass,38.6,3,matte,rush,86000.0,16,51,55
+iron table,teak wood,29.4,1,charcoal finish,rush,28700.0,73,33,51
+wooden chair,glass,12.1,1,melamine,rush,14300.0,89,12,15
+brass showpiece,particle board,29.4,1,charcoal finish,rush,18600.0,53,22,65
+executive office chair,engineered wood,11.8,1,pu polish,standard,8300.0,34,48,29
+glass coffee table,brass,39.5,1,raw,express,37500.0,53,54,76
+wooden dining table,aluminium,20.4,1,charcoal finish,standard,12700.0,73,42,15
+executive office chair,particle board,11.6,1,natural polish,rush,15300.0,81,17,41
+cane stool,brass,12.8,4,matte,standard,81100.0,73,58,72
+glass coffee table,teak wood,23.6,1,melamine,standard,18000.0,67,26,73
+steel bookshelf,teak wood,27.5,1,matte,rush,28500.0,13,53,46
+study desk,sheesham wood,29.2,1,natural polish,standard,22700.0,49,33,83
+wooden partition,teak wood,31.1,1,matte,rush,26900.0,81,25,17
+glass coffee table,glass,24.3,1,raw,rush,20900.0,63,50,47
+wooden chair,particle board,30.4,1,matte,express,17000.0,34,40,56
+teak rocking chair,engineered wood,26.0,4,raw,standard,63000.0,13,10,62
+brass showpiece,particle board,40.1,2,matte,rush,59000.0,30,57,94
+wooden chair,sheesham wood,27.0,1,raw,rush,32300.0,83,45,52
+lounge sofa,particle board,30.0,1,natural polish,standard,19200.0,29,55,80
+wooden chair,engineered wood,34.0,1,matte,express,19000.0,32,57,34
+wooden chair,teak wood,18.9,4,raw,rush,88100.0,33,55,44
+cane stool,iron,11.9,2,melamine,express,21600.0,39,56,78
+glass coffee table,engineered wood,41.3,4,natural polish,standard,77000.0,28,53,44
+cane stool,teak wood,10.2,1,pu polish,standard,13800.0,71,42,77
+glass coffee table,iron,28.4,1,matte,express,18400.0,65,12,60
+brass showpiece,iron,7.9,2,charcoal finish,rush,23800.0,13,35,31
+brass showpiece,aluminium,24.0,3,charcoal finish,express,55800.0,61,34,38
+executive office chair,engineered wood,3.2,2,matte,express,20000.0,27,23,90
+brass showpiece,brass,12.8,2,natural polish,standard,37700.0,69,31,72
+wooden wardrobe,brass,38.2,1,natural polish,standard,23500.0,19,53,19
+wooden dining table,glass,20.6,1,charcoal finish,standard,11100.0,41,28,31
+steel bookshelf,aluminium,9.5,1,melamine,express,6400.0,34,18,26
+wooden partition,iron,33.7,4,pu polish,express,74500.0,59,34,15
+steel bookshelf,brass,34.6,1,melamine,rush,32800.0,78,21,40
+executive office chair,steel,34.8,1,charcoal finish,standard,21100.0,73,14,90
+wooden dining table,teak wood,13.2,2,pu polish,express,35000.0,34,19,83
+modular tv unit,teak wood,42.6,3,melamine,standard,76600.0,15,25,38
+study desk,engineered wood,37.3,2,raw,express,48900.0,46,42,47
+study desk,iron,18.6,1,melamine,rush,16100.0,46,32,95
+lounge sofa,iron,29.0,1,natural polish,standard,13000.0,18,13,72
+cane stool,engineered wood,26.8,1,matte,standard,13900.0,47,19,87
+wooden dining table,iron,12.3,1,matte,rush,14800.0,35,32,76
+executive office chair,cane,18.8,1,matte,rush,19000.0,41,26,76
+study desk,glass,42.9,1,matte,standard,23300.0,30,21,23
+modular tv unit,steel,34.4,1,melamine,rush,24400.0,23,34,66
+teak rocking chair,cane,21.0,1,melamine,standard,11200.0,53,48,28
+study desk,iron,5.6,1,charcoal finish,standard,6900.0,85,53,31
+modular tv unit,particle board,44.4,1,gloss,rush,26600.0,77,14,43
+wooden chair,brass,18.2,1,raw,standard,20000.0,82,34,59
+glass coffee table,brass,23.2,1,charcoal finish,rush,29900.0,85,35,33
+iron table,aluminium,43.4,1,raw,standard,19300.0,50,10,17
+bed frame,teak wood,43.7,1,matte,standard,28400.0,49,15,72
+wooden partition,steel,43.7,1,pu polish,standard,22600.0,86,46,50
+wooden chair,teak wood,43.2,3,melamine,express,100000.0,14,25,71
+cane stool,brass,17.2,1,raw,standard,12100.0,19,37,50
+bed frame,steel,37.0,1,matte,rush,27500.0,74,26,87
+executive office chair,glass,42.1,1,melamine,express,29500.0,80,56,39
+steel bookshelf,cane,34.2,1,matte,express,23800.0,76,27,63
+study desk,teak wood,37.0,2,melamine,standard,48000.0,12,30,69
+wooden wardrobe,glass,12.6,2,melamine,rush,32400.0,64,46,88
+glass coffee table,engineered wood,23.4,1,pu polish,standard,17700.0,43,43,86
+wooden wardrobe,glass,5.8,4,natural polish,express,41100.0,23,10,68
+teak rocking chair,teak wood,11.2,1,charcoal finish,rush,19700.0,34,24,28
+iron table,brass,17.0,3,gloss,express,63000.0,41,24,65
+wooden chair,sheesham wood,21.8,1,charcoal finish,express,21700.0,62,26,19
+modular tv unit,teak wood,11.0,1,raw,standard,14500.0,45,15,67
+study desk,glass,29.6,1,charcoal finish,standard,18600.0,34,25,89
+wooden dining table,sheesham wood,10.3,1,matte,rush,21900.0,78,36,46
+modular tv unit,brass,17.7,1,melamine,express,15500.0,12,14,26
+executive office chair,particle board,41.6,2,gloss,standard,46400.0,58,31,70
+wooden chair,aluminium,17.9,1,raw,standard,14500.0,19,58,66
+lounge sofa,aluminium,3.6,1,raw,rush,11400.0,89,33,16
+brass showpiece,glass,33.7,1,charcoal finish,rush,22100.0,29,47,29
+modular tv unit,cane,22.4,1,matte,standard,10800.0,55,34,31
+teak rocking chair,iron,26.3,1,charcoal finish,rush,19300.0,45,56,22
+steel bookshelf,brass,44.4,1,raw,express,41200.0,75,43,73
+teak rocking chair,teak wood,8.9,1,melamine,express,14200.0,32,15,84
+lounge sofa,sheesham wood,44.9,1,charcoal finish,standard,25800.0,14,40,54
+iron table,engineered wood,23.1,4,raw,rush,77100.0,15,24,20
+wooden partition,sheesham wood,15.9,1,gloss,rush,18000.0,56,53,19
+wooden dining table,teak wood,14.4,1,raw,standard,12200.0,23,56,15
+lounge sofa,engineered wood,7.8,1,melamine,rush,8000.0,14,42,20
+bed frame,iron,27.6,1,melamine,express,21800.0,76,46,87
+glass coffee table,teak wood,33.4,1,melamine,express,32700.0,71,53,64
+glass coffee table,glass,34.3,2,matte,express,45000.0,71,38,86
+steel bookshelf,steel,39.7,1,melamine,rush,29400.0,89,35,76
+iron table,sheesham wood,26.8,1,charcoal finish,express,23600.0,43,47,37
+wooden chair,cane,20.6,1,gloss,express,17600.0,64,49,65
+brass showpiece,glass,8.5,1,gloss,rush,8800.0,40,42,41
+executive office chair,steel,39.7,1,natural polish,rush,26400.0,44,13,80
+wooden wardrobe,brass,36.3,1,melamine,rush,38100.0,58,45,66
+wooden partition,engineered wood,12.8,1,raw,standard,8700.0,13,36,50
+wooden dining table,aluminium,28.4,1,pu polish,express,19800.0,83,32,61
+executive office chair,sheesham wood,41.5,1,pu polish,express,40400.0,71,52,90
+steel bookshelf,sheesham wood,42.2,1,charcoal finish,express,35000.0,42,18,65
+study desk,cane,41.6,1,matte,express,23100.0,32,35,50
+wooden wardrobe,cane,10.8,1,natural polish,rush,16200.0,32,56,87
+modular tv unit,particle board,22.0,3,natural polish,rush,46600.0,36,35,89
+iron table,teak wood,20.0,1,natural polish,rush,26500.0,62,33,39
+wooden partition,brass,8.4,4,gloss,express,62200.0,60,16,95
+wooden wardrobe,sheesham wood,20.4,1,matte,rush,18100.0,12,41,27
+glass coffee table,teak wood,14.6,1,melamine,standard,15000.0,41,25,54
+iron table,brass,5.2,1,raw,standard,11800.0,49,13,15
+modular tv unit,aluminium,32.8,1,natural polish,express,22200.0,45,42,69
+wooden chair,particle board,26.5,1,charcoal finish,rush,21700.0,70,17,68
+wooden partition,sheesham wood,19.1,2,gloss,rush,43400.0,89,41,60
+wooden wardrobe,steel,33.6,1,pu polish,rush,24500.0,66,57,21
+glass coffee table,glass,28.9,3,raw,standard,50100.0,71,27,16
+modular tv unit,iron,35.3,1,natural polish,rush,24500.0,23,29,19
+wooden wardrobe,sheesham wood,24.0,1,matte,express,29700.0,41,55,95
+cane stool,iron,40.7,1,melamine,standard,20500.0,84,31,18
+brass showpiece,steel,13.8,1,natural polish,express,14200.0,29,30,56
+brass showpiece,steel,12.8,1,gloss,express,8100.0,38,40,20
+modular tv unit,teak wood,43.2,1,gloss,standard,36900.0,73,55,78
+glass coffee table,steel,20.8,2,raw,rush,29000.0,37,38,35
+study desk,cane,33.5,3,natural polish,express,63100.0,66,56,38
+wooden dining table,engineered wood,6.6,1,natural polish,rush,15400.0,73,54,87
+wooden chair,teak wood,5.3,1,matte,standard,13000.0,54,49,56
+steel bookshelf,glass,43.4,2,pu polish,express,43200.0,23,28,58
+teak rocking chair,cane,34.6,1,matte,rush,22500.0,23,25,22
+wooden wardrobe,sheesham wood,42.6,5,matte,express,142800.0,23,24,73
+modular tv unit,cane,32.0,1,matte,rush,24000.0,37,30,21
+glass coffee table,sheesham wood,29.7,1,gloss,rush,26600.0,50,44,32
+cane stool,glass,33.2,1,raw,standard,19400.0,14,46,57
+brass showpiece,sheesham wood,28.5,2,matte,standard,45200.0,36,22,47
+brass showpiece,glass,42.1,1,gloss,express,21400.0,41,22,27
+wooden dining table,teak wood,19.1,1,melamine,express,17900.0,68,25,70
+wooden partition,cane,17.2,1,raw,standard,13000.0,76,39,63
+wooden dining table,iron,3.9,3,pu polish,standard,30700.0,36,57,79
+wooden chair,particle board,44.2,1,raw,rush,31100.0,48,46,57
+study desk,iron,38.0,1,matte,rush,23000.0,63,13,73
+glass coffee table,aluminium,35.5,1,natural polish,express,24300.0,68,35,55
+steel bookshelf,steel,9.5,5,pu polish,rush,52500.0,60,18,34
+iron table,iron,25.1,1,pu polish,standard,13600.0,14,41,27
+wooden dining table,steel,43.1,2,gloss,rush,51400.0,67,12,43
+modular tv unit,particle board,12.9,1,charcoal finish,standard,11000.0,16,20,73
+cane stool,steel,40.5,1,gloss,express,30400.0,81,46,74
+iron table,sheesham wood,25.4,1,melamine,express,22000.0,69,12,70
+executive office chair,teak wood,32.5,2,pu polish,rush,57700.0,51,37,73
+executive office chair,particle board,39.9,1,melamine,express,22300.0,74,36,52
+modular tv unit,particle board,11.8,2,natural polish,rush,21000.0,34,51,24
+wooden partition,iron,14.3,1,raw,express,12500.0,89,22,26
+study desk,teak wood,14.2,1,matte,standard,16800.0,71,33,49
+modular tv unit,particle board,42.3,1,gloss,rush,26300.0,39,24,51
+wooden dining table,iron,27.0,1,raw,rush,20000.0,75,26,26
+wooden wardrobe,aluminium,21.2,1,natural polish,express,13700.0,61,23,78
+glass coffee table,engineered wood,23.0,1,melamine,rush,18000.0,40,20,47
+study desk,aluminium,6.4,3,charcoal finish,express,18400.0,57,43,43
+wooden partition,cane,11.9,1,melamine,standard,10500.0,86,41,16
+study desk,glass,38.9,3,matte,express,76300.0,67,37,35
+wooden wardrobe,glass,11.9,2,matte,standard,16100.0,14,10,72
+glass coffee table,teak wood,8.8,1,matte,express,12100.0,26,53,94
+wooden chair,steel,7.6,1,charcoal finish,rush,12400.0,57,59,85
+cane stool,aluminium,28.1,1,natural polish,express,17600.0,26,34,92
+wooden dining table,particle board,15.3,1,pu polish,standard,11700.0,71,31,16
+wooden chair,sheesham wood,31.9,1,melamine,express,27200.0,75,27,52
+wooden wardrobe,particle board,44.4,1,natural polish,express,23800.0,62,33,55
+wooden wardrobe,brass,5.1,3,raw,standard,38300.0,85,49,46
+teak rocking chair,teak wood,10.6,4,melamine,express,60600.0,33,48,80
+iron table,iron,40.5,1,gloss,rush,30700.0,55,58,89
+wooden wardrobe,particle board,32.7,2,charcoal finish,rush,53600.0,43,50,90
+wooden dining table,cane,3.8,1,natural polish,express,10900.0,69,31,40
+lounge sofa,iron,11.4,2,pu polish,rush,25500.0,23,22,39
+lounge sofa,engineered wood,2.9,1,melamine,standard,5800.0,64,41,65
+steel bookshelf,sheesham wood,11.5,1,matte,rush,11800.0,14,37,88
+brass showpiece,teak wood,33.6,1,pu polish,standard,25400.0,42,33,34
+wooden dining table,sheesham wood,19.0,1,gloss,standard,20100.0,62,41,50
+iron table,iron,11.1,3,raw,express,31000.0,50,51,72
+cane stool,steel,43.8,1,charcoal finish,standard,19000.0,37,17,56
+steel bookshelf,steel,17.4,1,pu polish,standard,9300.0,52,56,28
+brass showpiece,brass,16.0,1,matte,rush,22400.0,39,11,49
+cane stool,engineered wood,21.0,2,melamine,rush,33900.0,58,40,25
+modular tv unit,aluminium,42.8,1,raw,express,23300.0,12,14,34
+wooden wardrobe,engineered wood,38.3,1,raw,standard,21600.0,48,56,90
+cane stool,brass,24.8,1,raw,rush,26500.0,72,29,92
+modular tv unit,teak wood,23.8,1,charcoal finish,rush,28500.0,81,46,73
+bed frame,aluminium,26.9,4,raw,standard,69900.0,54,43,64
+brass showpiece,brass,31.0,1,raw,rush,29700.0,56,25,64
+steel bookshelf,teak wood,38.0,1,charcoal finish,standard,26400.0,16,56,61
+modular tv unit,iron,3.3,1,gloss,standard,5100.0,37,17,61
+teak rocking chair,engineered wood,30.7,2,matte,standard,34900.0,30,40,94
+modular tv unit,iron,39.4,1,gloss,express,23200.0,74,18,47
+steel bookshelf,particle board,34.8,2,natural polish,express,36800.0,15,47,33
+brass showpiece,glass,16.1,1,melamine,rush,14600.0,12,33,68
+modular tv unit,cane,18.0,1,charcoal finish,standard,12600.0,30,38,47
+glass coffee table,sheesham wood,25.3,1,pu polish,express,23400.0,85,11,60
+iron table,brass,24.6,1,raw,standard,19700.0,37,34,26
+bed frame,engineered wood,32.8,1,charcoal finish,rush,22700.0,59,32,84
+steel bookshelf,cane,18.3,1,natural polish,rush,18100.0,58,24,39
+steel bookshelf,brass,42.0,1,natural polish,express,29200.0,89,13,66
+wooden dining table,iron,39.0,1,gloss,standard,21800.0,88,13,89
+wooden partition,sheesham wood,22.8,4,matte,express,101000.0,72,51,70
+wooden wardrobe,teak wood,40.0,2,raw,standard,59000.0,58,22,36
+modular tv unit,particle board,12.2,1,charcoal finish,express,9000.0,53,17,38
+wooden dining table,iron,8.4,1,natural polish,rush,9700.0,85,34,32
+iron table,steel,15.4,1,charcoal finish,standard,11800.0,44,30,95
+bed frame,cane,23.4,1,natural polish,express,15900.0,84,23,91
+glass coffee table,cane,2.7,1,melamine,express,10700.0,78,51,53
+bed frame,glass,13.4,1,raw,express,15000.0,53,41,53
+wooden dining table,glass,37.8,1,matte,standard,24000.0,81,50,82
+bed frame,steel,30.8,1,pu polish,express,24100.0,78,53,72
+bed frame,iron,27.0,1,pu polish,standard,16900.0,46,43,44
+steel bookshelf,particle board,16.9,1,charcoal finish,express,14900.0,73,39,69
+cane stool,engineered wood,35.0,1,natural polish,express,20200.0,34,37,19
+teak rocking chair,steel,7.5,1,raw,express,9600.0,33,27,86
+bed frame,brass,17.5,1,raw,express,14000.0,25,45,37
+iron table,particle board,42.5,1,matte,standard,23400.0,86,12,66
+wooden wardrobe,glass,11.0,2,pu polish,rush,18000.0,26,31,74
+modular tv unit,brass,8.1,1,gloss,standard,7600.0,46,39,44
+wooden partition,steel,29.6,4,natural polish,express,71500.0,13,44,92
+teak rocking chair,brass,9.5,1,matte,rush,14900.0,25,10,94
+glass coffee table,particle board,23.8,1,pu polish,standard,15300.0,24,43,22
+bed frame,engineered wood,28.6,1,gloss,standard,15900.0,71,15,46
+glass coffee table,glass,34.4,1,melamine,rush,21700.0,45,19,16
+cane stool,particle board,15.0,1,charcoal finish,rush,10900.0,20,44,35
+brass showpiece,teak wood,30.2,1,raw,rush,33900.0,51,26,66
+brass showpiece,iron,22.7,1,charcoal finish,standard,12900.0,74,44,21
+executive office chair,brass,2.8,1,melamine,express,9500.0,66,11,76
+modular tv unit,cane,12.4,1,gloss,rush,11100.0,16,10,27
+steel bookshelf,engineered wood,13.4,1,matte,rush,17200.0,71,20,77
+modular tv unit,engineered wood,43.1,1,gloss,express,26100.0,63,38,52
+teak rocking chair,teak wood,14.0,1,matte,standard,9400.0,12,11,74
+modular tv unit,sheesham wood,11.8,1,melamine,rush,19300.0,45,17,73
+cane stool,glass,32.8,1,melamine,standard,18200.0,19,22,86
+cane stool,glass,44.6,1,matte,standard,24400.0,31,30,72
+wooden partition,glass,30.4,1,charcoal finish,rush,24700.0,39,52,72
+cane stool,aluminium,30.7,4,pu polish,rush,75800.0,19,49,39
+wooden chair,engineered wood,15.9,2,pu polish,express,31200.0,52,34,76
+bed frame,sheesham wood,30.2,2,gloss,express,43200.0,24,41,30
+modular tv unit,teak wood,18.7,1,gloss,rush,28000.0,84,34,73
+wooden wardrobe,engineered wood,29.8,2,pu polish,standard,38900.0,55,41,65
+modular tv unit,cane,34.5,1,charcoal finish,standard,18500.0,23,50,61
+lounge sofa,sheesham wood,34.4,1,pu polish,express,26200.0,18,32,89
+wooden wardrobe,iron,23.8,1,gloss,standard,17300.0,63,36,64
+bed frame,brass,6.6,1,natural polish,standard,9800.0,72,42,70
+executive office chair,cane,2.4,1,raw,rush,5200.0,36,46,22
+glass coffee table,teak wood,37.1,1,raw,rush,31800.0,75,51,24
+iron table,particle board,34.1,1,melamine,standard,17100.0,47,31,72
+teak rocking chair,iron,15.1,1,melamine,standard,11500.0,31,20,30
+glass coffee table,steel,27.5,2,gloss,rush,36100.0,15,29,24
+wooden wardrobe,steel,9.8,1,pu polish,rush,10300.0,32,19,52
+brass showpiece,cane,32.2,1,raw,standard,18300.0,25,12,94
+lounge sofa,sheesham wood,23.4,2,gloss,express,51800.0,30,40,74
+cane stool,aluminium,18.1,1,pu polish,standard,15200.0,42,45,78
+wooden chair,cane,42.1,5,matte,express,136000.0,74,58,61
+wooden chair,teak wood,18.5,2,pu polish,rush,48900.0,26,15,61
+steel bookshelf,particle board,3.0,1,raw,standard,5600.0,21,59,17
+wooden chair,glass,18.2,1,melamine,rush,16400.0,53,44,60
+wooden chair,steel,40.9,1,gloss,standard,21000.0,81,35,18
+wooden chair,sheesham wood,19.1,1,matte,express,21500.0,52,55,74
+cane stool,particle board,13.9,1,raw,standard,9600.0,41,33,44
+bed frame,sheesham wood,38.7,1,gloss,express,31600.0,88,15,58
+iron table,aluminium,16.9,1,natural polish,standard,9600.0,32,13,64
+iron table,sheesham wood,20.0,1,natural polish,rush,26300.0,59,16,35
+lounge sofa,particle board,10.5,1,melamine,express,10200.0,32,27,83
+glass coffee table,glass,11.7,1,matte,standard,7200.0,23,50,47
+brass showpiece,teak wood,4.9,1,matte,standard,12500.0,72,43,42
+wooden chair,teak wood,8.1,1,gloss,express,19100.0,81,43,79
+modular tv unit,iron,24.0,1,natural polish,standard,17800.0,50,31,90
+modular tv unit,glass,25.4,2,natural polish,rush,33600.0,60,41,21
+lounge sofa,engineered wood,35.2,5,pu polish,rush,132900.0,25,36,54
+iron table,particle board,6.5,1,pu polish,rush,12600.0,83,53,56
+teak rocking chair,iron,14.3,1,natural polish,rush,10200.0,80,20,26
+teak rocking chair,engineered wood,40.6,1,melamine,standard,23300.0,83,18,61
+wooden wardrobe,iron,27.7,1,charcoal finish,rush,16800.0,14,36,54
+bed frame,steel,36.6,2,raw,express,50500.0,81,55,33
+wooden chair,cane,39.9,1,melamine,standard,18900.0,41,22,48
+brass showpiece,steel,5.4,2,matte,rush,12800.0,79,34,34
+executive office chair,particle board,22.3,1,raw,express,16200.0,61,15,74
+bed frame,particle board,32.6,1,melamine,express,20800.0,14,21,44
+modular tv unit,teak wood,10.2,1,melamine,rush,15400.0,63,43,55
+teak rocking chair,cane,12.9,2,pu polish,standard,25300.0,80,53,25
+wooden dining table,iron,38.8,1,gloss,rush,29400.0,51,37,61
+wooden chair,sheesham wood,11.3,2,charcoal finish,rush,38300.0,74,12,18
+glass coffee table,particle board,36.7,1,melamine,standard,19100.0,57,23,90
+executive office chair,iron,18.8,1,natural polish,standard,11600.0,17,36,37
+lounge sofa,engineered wood,22.6,2,melamine,express,29500.0,46,28,44
+teak rocking chair,sheesham wood,32.1,2,pu polish,express,56600.0,33,57,65
+wooden dining table,cane,11.4,1,pu polish,rush,12300.0,84,28,61
+executive office chair,engineered wood,27.7,1,matte,express,16800.0,20,42,66
+teak rocking chair,particle board,16.2,2,raw,rush,33300.0,79,37,22
+cane stool,cane,44.8,1,melamine,express,24200.0,59,39,26
+steel bookshelf,steel,24.6,1,melamine,standard,14900.0,78,53,47
+wooden chair,iron,22.0,3,matte,standard,43100.0,58,49,90
+teak rocking chair,glass,27.4,1,gloss,standard,16700.0,33,49,35
+glass coffee table,engineered wood,43.7,1,charcoal finish,rush,24000.0,39,13,36
+cane stool,iron,12.9,1,natural polish,rush,10900.0,12,17,52
+executive office chair,brass,22.3,1,gloss,rush,28100.0,19,28,79
+cane stool,glass,11.4,1,melamine,standard,11800.0,24,47,63
+wooden dining table,teak wood,19.1,3,gloss,rush,92000.0,60,51,68
+teak rocking chair,teak wood,23.2,2,melamine,rush,55000.0,70,48,69
+glass coffee table,teak wood,13.1,1,raw,rush,21100.0,87,17,86
+wooden chair,aluminium,4.2,1,charcoal finish,express,8000.0,80,17,39
+wooden partition,cane,21.6,1,matte,rush,13600.0,29,11,82
+steel bookshelf,glass,30.7,3,charcoal finish,standard,58300.0,87,24,55
+modular tv unit,iron,41.3,1,natural polish,rush,24200.0,88,19,28
+wooden dining table,brass,44.6,2,natural polish,standard,63000.0,13,38,52
+lounge sofa,glass,7.3,1,natural polish,standard,13900.0,66,54,93
+wooden partition,particle board,20.5,1,charcoal finish,standard,13000.0,49,37,35
+executive office chair,cane,38.9,2,matte,standard,42300.0,41,53,46
+brass showpiece,sheesham wood,24.0,1,natural polish,express,25100.0,68,45,47
+brass showpiece,engineered wood,24.2,1,melamine,standard,13800.0,76,56,34
+bed frame,glass,24.8,2,natural polish,rush,41300.0,22,58,52
+wooden dining table,sheesham wood,43.8,1,raw,express,32000.0,76,40,18
+cane stool,glass,41.8,1,natural polish,standard,18900.0,15,35,41
+glass coffee table,iron,7.0,3,pu polish,rush,19000.0,26,39,56
+steel bookshelf,glass,14.4,5,charcoal finish,express,68100.0,79,27,87
+executive office chair,brass,9.2,1,raw,standard,17100.0,48,50,63
+study desk,cane,9.6,1,natural polish,rush,9000.0,53,43,46
+lounge sofa,steel,21.1,1,raw,rush,14900.0,79,10,77
+iron table,engineered wood,10.7,1,natural polish,standard,8800.0,28,44,38
+bed frame,steel,27.8,1,matte,standard,15500.0,47,28,78
+executive office chair,brass,13.9,1,melamine,express,11600.0,22,48,19
+modular tv unit,brass,34.4,1,matte,rush,36500.0,30,35,62
+wooden partition,cane,18.6,1,gloss,express,20800.0,86,42,76
+teak rocking chair,glass,27.4,1,gloss,standard,14200.0,62,23,65
+executive office chair,glass,14.8,1,charcoal finish,standard,19300.0,83,54,95
+glass coffee table,brass,41.8,1,natural polish,rush,39000.0,80,22,61
+iron table,brass,29.2,1,melamine,express,21000.0,54,12,68
+bed frame,iron,44.6,1,matte,rush,31000.0,67,39,71
+modular tv unit,teak wood,29.2,1,charcoal finish,express,24900.0,18,12,79
+steel bookshelf,sheesham wood,5.8,1,melamine,standard,10100.0,12,45,49
+iron table,engineered wood,36.8,1,pu polish,rush,32200.0,86,44,86
+iron table,glass,38.2,1,natural polish,express,24200.0,27,11,54
+modular tv unit,sheesham wood,42.0,2,charcoal finish,rush,86900.0,45,48,81
+brass showpiece,brass,11.4,1,melamine,rush,22300.0,64,48,79
+steel bookshelf,glass,23.6,2,melamine,rush,35500.0,68,34,45
+wooden dining table,engineered wood,25.8,2,gloss,express,37000.0,61,37,67
+executive office chair,cane,29.1,1,gloss,rush,18800.0,42,23,48
+modular tv unit,aluminium,16.6,1,gloss,express,11300.0,49,26,64
+executive office chair,particle board,26.6,2,matte,rush,32800.0,30,18,41
+executive office chair,glass,31.5,1,matte,express,19400.0,67,21,65
+wooden chair,particle board,9.9,2,charcoal finish,express,22900.0,58,32,35
+bed frame,teak wood,35.6,1,raw,rush,32400.0,36,39,87
+modular tv unit,teak wood,22.5,2,melamine,express,42000.0,59,48,42
+iron table,glass,37.4,1,raw,standard,19600.0,82,50,27
+iron table,particle board,19.0,1,matte,express,13600.0,86,31,59
+brass showpiece,engineered wood,32.7,1,gloss,rush,20600.0,39,15,58
+wooden chair,engineered wood,13.5,1,melamine,rush,13200.0,24,58,68
+modular tv unit,steel,19.4,1,pu polish,express,12900.0,25,19,49
+bed frame,brass,34.8,1,raw,standard,29100.0,54,34,74
+bed frame,teak wood,18.5,1,raw,express,23100.0,87,36,67
+iron table,steel,17.0,1,pu polish,rush,17500.0,36,42,69
+bed frame,steel,40.6,1,raw,standard,22400.0,18,45,65
+brass showpiece,particle board,42.3,1,melamine,express,25500.0,70,13,81
+wooden partition,cane,24.8,1,raw,express,13700.0,15,35,23
+iron table,brass,28.8,1,matte,standard,22000.0,70,35,85
+steel bookshelf,sheesham wood,41.5,1,raw,rush,32500.0,39,20,79
+wooden wardrobe,particle board,2.3,1,charcoal finish,rush,8700.0,57,59,40
+wooden wardrobe,teak wood,42.8,1,gloss,express,33100.0,38,43,29
+wooden wardrobe,brass,20.6,1,pu polish,express,21900.0,73,27,92
+glass coffee table,brass,38.7,1,melamine,standard,29500.0,44,26,89
+wooden wardrobe,particle board,13.2,1,raw,rush,12600.0,59,35,76
+wooden wardrobe,iron,42.6,3,gloss,express,80200.0,15,53,43
+study desk,steel,15.3,1,gloss,express,13600.0,19,22,22
+wooden dining table,sheesham wood,17.4,1,gloss,express,19700.0,55,18,51
+bed frame,aluminium,36.8,1,charcoal finish,rush,28400.0,53,49,80
+steel bookshelf,particle board,8.6,3,melamine,rush,33400.0,24,54,24
+study desk,iron,18.9,1,natural polish,standard,11100.0,43,34,85
+lounge sofa,glass,18.6,5,natural polish,standard,51200.0,89,26,32
+study desk,iron,23.8,1,raw,standard,14700.0,12,35,34
+teak rocking chair,particle board,14.1,2,melamine,express,24700.0,76,26,36
+wooden dining table,steel,14.1,1,natural polish,rush,12200.0,32,44,90
+brass showpiece,cane,37.4,1,charcoal finish,express,18400.0,51,14,35
+wooden partition,iron,3.4,1,raw,standard,6800.0,19,50,33
+teak rocking chair,engineered wood,37.6,1,gloss,rush,26200.0,48,10,81
+cane stool,aluminium,20.3,1,raw,rush,16200.0,45,58,67
+wooden partition,steel,11.7,4,pu polish,standard,41100.0,68,15,71
+executive office chair,engineered wood,30.5,1,natural polish,rush,22200.0,58,13,90
+teak rocking chair,steel,32.6,1,melamine,rush,21900.0,69,59,44
+teak rocking chair,brass,30.4,1,raw,rush,31500.0,27,31,68
+brass showpiece,aluminium,3.8,4,gloss,rush,34500.0,45,18,95
+wooden chair,engineered wood,9.4,1,raw,rush,9500.0,36,30,79
+teak rocking chair,sheesham wood,7.4,1,gloss,rush,8300.0,50,15,15
+lounge sofa,particle board,16.4,1,matte,express,13500.0,52,38,87
+steel bookshelf,glass,25.6,1,matte,rush,21500.0,60,21,61
+glass coffee table,aluminium,43.7,1,charcoal finish,express,30800.0,54,44,92
+brass showpiece,engineered wood,20.5,1,natural polish,standard,11400.0,17,42,63
+study desk,brass,39.2,1,melamine,express,33400.0,30,21,94
+wooden partition,engineered wood,12.8,1,raw,rush,9000.0,13,31,71
+glass coffee table,iron,10.0,1,charcoal finish,rush,14400.0,62,27,94
+steel bookshelf,steel,19.4,1,natural polish,standard,9800.0,17,42,19
+study desk,teak wood,10.8,1,pu polish,express,11000.0,30,31,83
+wooden chair,engineered wood,27.8,1,pu polish,rush,19900.0,25,32,33
+teak rocking chair,particle board,25.6,1,gloss,express,14700.0,40,19,31
+teak rocking chair,steel,13.4,1,gloss,express,17000.0,52,58,63
+iron table,particle board,28.0,4,natural polish,express,74300.0,35,19,52
+study desk,brass,29.9,1,raw,rush,29400.0,52,29,33
+wooden wardrobe,glass,28.2,1,pu polish,rush,23800.0,38,19,87
+study desk,engineered wood,21.3,1,natural polish,express,17700.0,40,13,79
+wooden partition,brass,19.6,1,natural polish,standard,17700.0,33,45,44
+executive office chair,engineered wood,33.2,1,charcoal finish,standard,16400.0,20,45,15
+modular tv unit,brass,6.0,1,pu polish,standard,11300.0,85,59,41
+wooden partition,particle board,44.8,1,raw,rush,25700.0,26,13,87
+wooden chair,particle board,37.2,1,matte,express,21000.0,61,29,54
+wooden dining table,teak wood,17.3,3,matte,express,72100.0,80,52,62
+lounge sofa,aluminium,40.1,1,matte,rush,26300.0,27,27,62
+glass coffee table,engineered wood,33.9,1,natural polish,rush,22900.0,88,55,17
+study desk,sheesham wood,17.8,1,natural polish,express,17200.0,84,15,53
+steel bookshelf,particle board,23.5,2,gloss,rush,39100.0,13,52,74
+bed frame,steel,10.6,1,charcoal finish,express,12600.0,74,31,25
+brass showpiece,brass,19.6,1,raw,rush,18900.0,12,12,92
+wooden wardrobe,steel,33.0,1,melamine,standard,16500.0,85,37,35
+wooden dining table,steel,33.9,1,matte,rush,23800.0,67,51,37
+wooden dining table,sheesham wood,35.8,2,matte,standard,62300.0,66,55,46
+modular tv unit,teak wood,25.8,1,gloss,express,24200.0,50,25,75
+brass showpiece,brass,21.9,1,matte,express,22000.0,16,51,95
+wooden wardrobe,particle board,18.5,1,melamine,rush,13900.0,48,32,27
+brass showpiece,teak wood,14.8,1,charcoal finish,standard,18100.0,77,46,20
+wooden chair,teak wood,29.3,1,pu polish,rush,28100.0,43,51,92
+wooden dining table,iron,12.5,1,matte,express,8300.0,39,20,92
+wooden wardrobe,sheesham wood,25.3,1,natural polish,standard,16600.0,20,56,47
+executive office chair,iron,42.6,1,gloss,rush,26700.0,24,10,48
+wooden chair,steel,6.9,1,melamine,standard,9700.0,50,33,40
+glass coffee table,cane,5.0,1,gloss,standard,5800.0,64,10,76
+glass coffee table,steel,25.0,1,natural polish,express,18500.0,27,34,68
+executive office chair,particle board,9.9,1,pu polish,standard,13700.0,62,50,85
+executive office chair,glass,40.8,2,natural polish,standard,44600.0,57,39,71
+iron table,sheesham wood,38.5,1,pu polish,express,38900.0,87,56,71
+wooden chair,iron,26.0,5,gloss,standard,80200.0,56,24,34
+glass coffee table,glass,18.1,1,natural polish,express,19000.0,89,49,73
+modular tv unit,iron,35.2,2,pu polish,standard,41000.0,20,37,45
+teak rocking chair,engineered wood,31.1,1,matte,express,23100.0,69,46,59
+wooden chair,glass,30.5,1,melamine,rush,24600.0,75,53,43
+bed frame,brass,35.3,1,melamine,express,24200.0,28,25,17
+steel bookshelf,steel,32.6,1,pu polish,express,20100.0,53,21,56
+cane stool,sheesham wood,39.4,2,natural polish,standard,55400.0,51,54,73
+bed frame,teak wood,36.2,1,gloss,express,25500.0,61,21,37
+lounge sofa,brass,16.0,1,matte,rush,29800.0,78,47,81
+steel bookshelf,aluminium,30.5,1,pu polish,standard,14500.0,38,45,21
+wooden partition,engineered wood,11.3,1,charcoal finish,rush,17600.0,81,33,90
+wooden partition,brass,29.1,2,pu polish,standard,42000.0,32,41,49
+iron table,brass,30.7,1,matte,express,28200.0,70,49,43
+wooden chair,brass,42.1,3,melamine,express,92800.0,59,36,34
+executive office chair,aluminium,15.7,1,natural polish,standard,11200.0,46,40,29
+wooden dining table,steel,2.7,1,natural polish,express,10800.0,86,39,62
+lounge sofa,sheesham wood,28.9,1,gloss,standard,23100.0,43,24,72
+modular tv unit,glass,8.0,1,matte,standard,7700.0,40,28,57
+brass showpiece,sheesham wood,22.2,1,natural polish,express,25200.0,66,37,83
+iron table,engineered wood,4.3,1,pu polish,standard,8500.0,53,29,52
+executive office chair,iron,23.5,1,natural polish,rush,18600.0,65,27,89
+study desk,particle board,27.8,1,matte,express,19600.0,85,31,79
+cane stool,brass,2.8,1,pu polish,express,7700.0,58,26,60
+wooden chair,cane,25.0,4,natural polish,rush,77700.0,23,49,34
+modular tv unit,iron,27.5,1,melamine,standard,19800.0,77,45,68
+wooden wardrobe,engineered wood,30.3,2,melamine,express,38600.0,41,26,69
+executive office chair,sheesham wood,40.6,1,natural polish,standard,33200.0,84,44,65
+brass showpiece,particle board,37.1,4,charcoal finish,rush,106500.0,31,48,67
+modular tv unit,glass,22.2,1,pu polish,rush,18000.0,61,16,72
+modular tv unit,engineered wood,2.4,1,charcoal finish,standard,4700.0,14,46,54
+cane stool,sheesham wood,17.2,1,melamine,express,15600.0,67,19,53
+wooden dining table,steel,44.4,1,gloss,express,26500.0,15,40,78
+wooden partition,cane,23.7,1,natural polish,express,15700.0,73,14,78
+glass coffee table,cane,21.7,1,matte,standard,14000.0,68,51,67
+iron table,glass,7.4,1,raw,standard,7800.0,26,51,29
+teak rocking chair,sheesham wood,22.8,1,raw,express,22600.0,88,25,87
+bed frame,cane,21.5,1,matte,rush,17300.0,59,27,30
+cane stool,teak wood,23.1,1,matte,standard,17000.0,17,28,91
+wooden wardrobe,engineered wood,8.1,1,raw,rush,13100.0,83,34,91
+cane stool,steel,41.9,1,pu polish,rush,26600.0,39,12,94
+cane stool,particle board,5.7,1,pu polish,express,5700.0,43,44,24
+wooden partition,steel,28.8,1,pu polish,standard,16700.0,52,40,36
+iron table,teak wood,6.0,1,raw,standard,10300.0,65,45,15
+cane stool,iron,12.2,1,natural polish,standard,11500.0,34,55,86
+executive office chair,cane,23.0,1,melamine,standard,12400.0,39,34,75
+wooden partition,teak wood,34.8,1,pu polish,rush,29700.0,24,41,27
+brass showpiece,teak wood,3.5,1,natural polish,rush,16300.0,84,19,67
+teak rocking chair,engineered wood,12.2,1,matte,express,10000.0,12,53,89
+bed frame,teak wood,31.9,3,melamine,express,87800.0,68,17,86
+modular tv unit,glass,25.9,1,natural polish,rush,18300.0,54,40,31
+steel bookshelf,sheesham wood,20.5,1,charcoal finish,express,20100.0,61,47,51
+wooden chair,glass,42.1,1,natural polish,rush,32400.0,60,30,80
+study desk,teak wood,42.7,2,pu polish,rush,84700.0,67,47,42
+modular tv unit,teak wood,28.8,1,natural polish,express,24100.0,24,41,95
+glass coffee table,aluminium,44.6,1,raw,rush,28300.0,67,37,15
+wooden partition,sheesham wood,13.7,1,gloss,express,12900.0,38,18,30
+lounge sofa,particle board,34.4,1,charcoal finish,express,24600.0,78,33,87
+glass coffee table,glass,21.9,1,melamine,rush,23400.0,69,36,94
+steel bookshelf,aluminium,15.5,3,charcoal finish,express,35500.0,61,29,26
+wooden chair,brass,37.7,1,matte,express,31500.0,41,12,35
+steel bookshelf,teak wood,29.2,1,raw,express,23500.0,26,55,66
+teak rocking chair,aluminium,6.6,1,melamine,express,13200.0,58,32,82
+wooden wardrobe,sheesham wood,2.5,1,charcoal finish,rush,14100.0,51,59,24
+executive office chair,steel,27.2,1,gloss,standard,18600.0,64,46,70
+teak rocking chair,iron,35.9,2,matte,rush,44100.0,41,20,90
+modular tv unit,particle board,4.2,1,charcoal finish,rush,8900.0,69,30,70
+teak rocking chair,teak wood,26.8,1,charcoal finish,express,21300.0,51,46,15
+steel bookshelf,teak wood,11.0,1,pu polish,express,10400.0,19,56,31
+wooden wardrobe,teak wood,36.8,1,pu polish,standard,26700.0,17,44,28
+study desk,teak wood,31.4,3,charcoal finish,standard,71700.0,46,15,83
+modular tv unit,engineered wood,41.9,1,pu polish,express,24200.0,70,59,32
+executive office chair,cane,30.5,3,raw,rush,64300.0,26,28,77
+glass coffee table,engineered wood,28.3,2,raw,rush,49400.0,43,57,58
+brass showpiece,iron,25.1,1,matte,rush,17900.0,43,45,27
+wooden partition,engineered wood,32.5,1,natural polish,express,22500.0,15,54,42
+wooden wardrobe,sheesham wood,4.2,2,charcoal finish,rush,15700.0,42,18,59
+glass coffee table,cane,24.8,1,gloss,standard,14900.0,68,25,44
+brass showpiece,iron,42.6,1,natural polish,express,26200.0,56,32,83
+bed frame,engineered wood,25.5,1,melamine,rush,21200.0,17,41,32
+steel bookshelf,aluminium,32.0,1,raw,express,17700.0,74,12,25
+wooden chair,particle board,7.7,1,natural polish,standard,8300.0,43,31,84
+brass showpiece,aluminium,7.2,1,natural polish,standard,5500.0,71,21,28
+brass showpiece,aluminium,41.4,1,natural polish,standard,21100.0,58,14,61
+iron table,sheesham wood,36.6,1,charcoal finish,standard,25500.0,85,23,72
+lounge sofa,glass,37.9,1,raw,express,25700.0,21,44,89
+brass showpiece,cane,41.9,1,matte,express,25100.0,75,11,90
+study desk,teak wood,35.9,1,natural polish,express,26000.0,70,35,30
+wooden partition,aluminium,25.0,1,raw,standard,16100.0,15,48,16
+wooden partition,sheesham wood,9.0,1,charcoal finish,rush,18700.0,57,49,26
+wooden chair,sheesham wood,4.2,1,raw,standard,10500.0,19,14,94
+steel bookshelf,cane,21.0,1,pu polish,express,21500.0,82,54,66
+wooden partition,engineered wood,36.6,1,charcoal finish,express,23100.0,63,28,91
+brass showpiece,engineered wood,31.2,1,melamine,standard,15100.0,81,45,16
+wooden dining table,glass,16.8,4,charcoal finish,express,45500.0,24,52,76
+wooden dining table,engineered wood,36.0,2,matte,rush,44400.0,30,47,84

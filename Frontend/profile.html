@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Karukriti - Profile</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app-shell">
+
+    <!-- HEADER -->
+
+    <header class="top-header">
+
+        <div>
+            <div class="brand-small">
+                KARUKRITI
+            </div>
+
+            <div class="brand-tagline">
+                From Tradition to Tomorrow
+            </div>
+        </div>
+
+        <button
+            class="header-icon"
+            onclick="goTo('index.html')"
+        >
+            ←
+        </button>
+
+    </header>
+
+
+    <!-- MAIN -->
+
+    <main class="profile-main">
+
+
+        <!-- TITLE -->
+
+        <div class="profile-page-title">
+
+            <span>
+                ARTISAN ACCOUNT
+            </span>
+
+            <h1>
+                My Profile
+            </h1>
+
+        </div>
+
+
+        <!-- PROFILE CARD -->
+
+        <section class="profile-main-card">
+
+            <div class="profile-avatar">
+                RK
+            </div>
+
+
+            <div class="profile-details">
+
+                <h2 id="profileUserName">
+                    Raj Kumar
+                </h2>
+
+                <p id="profileUserCategory">
+                    Traditional Handicraft Artisan
+                </p>
+
+                <span id="profileUserLocation">
+                    📍 West Bengal, India
+                </span>
+
+            </div>
+
+
+            <button
+                class="edit-profile-btn"
+                onclick="editProfile()"
+            >
+                Edit
+            </button>
+
+        </section>
+
+
+        <!-- VERIFIED -->
+
+        <section class="verified-profile">
+
+            <div class="verified-icon">
+                ✓
+            </div>
+
+            <div>
+
+                <strong>
+                    Verified Artisan
+                </strong>
+
+                <span>
+                    Your artisan profile is verified
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- STATS -->
+
+        <section class="profile-stats">
+
+            <div class="profile-stat">
+
+                <strong id="profileProductCount">
+                    0
+                </strong>
+
+                <span>
+                    Products
+                </span>
+
+            </div>
+
+
+            <div class="profile-stat">
+
+                <strong id="profileOrderCount">
+                    0
+                </strong>
+
+                <span>
+                    Orders
+                </span>
+
+            </div>
+
+
+            <div class="profile-stat">
+
+                <strong>
+                    0
+                </strong>
+
+                <span>
+                    Reviews
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- AI BUSINESS MANAGER -->
+
+        <section class="business-manager">
+
+            <div class="manager-top">
+
+                <div class="manager-icon">
+                    ✦
+                </div>
+
+                <div>
+
+                    <span>
+                        KARUKRITI AI
+                    </span>
+
+                    <h2>
+                        Your Business Manager
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <p>
+                Get help with pricing, product descriptions,
+                cataloging and growing your digital business.
+            </p>
+
+
+            <button
+                onclick="goTo('add-product.html')"
+            >
+                Create New Catalog →
+            </button>
+
+        </section>
+
+
+        <!-- LOGOUT -->
+
+        <div class="profile-logout-section">
+
+        <button
+            class="logout-button"
+            onclick="logoutUser()"
+        >
+            Logout
+        </button>
+
+        <p>
+            You can sign in again anytime.
+        </p>
+
+        </div>
+
+
+        <!-- SETTINGS -->
+
+        <section class="settings-section">
+
+            <div class="settings-title">
+                ACCOUNT & SETTINGS
+            </div>
+
+
+            <div class="settings-list">
+
+
+                <button
+                    class="setting-item"
+                    onclick="alert('Language settings coming soon')"
+                >
+
+                    <div class="setting-left">
+
+                        <div class="setting-icon">
+                            文
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Language
+                            </strong>
+
+                            <span>
+                                English
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <b>›</b>
+
+                </button>
+
+
+                <button
+                    class="setting-item"
+                    onclick="alert('Notifications are enabled')"
+                >
+
+                    <div class="setting-left">
+
+                        <div class="setting-icon">
+                            ♢
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Notifications
+                            </strong>
+
+                            <span>
+                                Enabled
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <b>›</b>
+
+                </button>
+
+
+                <button
+                    class="setting-item"
+                    onclick="alert('Help & Support coming soon')"
+                >
+
+                    <div class="setting-left">
+
+                        <div class="setting-icon">
+                            ?
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Help & Support
+                            </strong>
+
+                            <span>
+                                Get assistance
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <b>›</b>
+
+                </button>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- ABOUT -->
+
+        <section class="about-card">
+
+            <div class="about-logo">
+                K
+            </div>
+
+            <h3>
+                About Karukriti
+            </h3>
+
+            <p>
+                Empowering India's artisans with
+                AI-powered digital tools.
+            </p>
+
+            <small>
+                Version 1.0 • Made for artisans
+            </small>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- BOTTOM NAV -->
+
+    <nav class="bottom-nav">
+
+
+        <button
+            class="nav-item"
+            onclick="goTo('index.html')"
+        >
+
+            <span>⌂</span>
+
+            <small>
+                Home
+            </small>
+
+        </button>
+
+
+        <button
+            class="nav-item"
+            onclick="goTo('products.html')"
+        >
+
+            <span>▣</span>
+
+            <small>
+                Products
+            </small>
+
+        </button>
+
+
+        <button
+            class="nav-add"
+            onclick="goTo('add-product.html')"
+        >
+
+            <span>
+                +
+            </span>
+
+        </button>
+
+
+        <button
+            class="nav-item"
+            onclick="goTo('orders.html')"
+        >
+
+            <span>♧</span>
+
+            <small>
+                Orders
+            </small>
+
+        </button>
+
+
+        <button
+            class="nav-item active"
+            onclick="goTo('profile.html')"
+        >
+
+            <span>♙</span>
+
+            <small>
+                Profile
+            </small>
+
+        </button>
+
+    </nav>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

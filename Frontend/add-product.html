@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>KaruKriti - Add Product</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+<div class="app-shell">
+
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header class="top-header">
+
+        <div>
+
+            <div class="brand-small">
+                KARUKRITI
+            </div>
+
+            <div class="brand-tagline">
+                CRAFT • CULTURE • CONNECTION
+            </div>
+
+        </div>
+
+
+        <button
+            class="header-icon"
+            type="button"
+            onclick="goTo('index.html')"
+            aria-label="Go Home"
+        >
+            ×
+        </button>
+
+    </header>
+
+
+
+    <!-- =========================
+         ADD PRODUCT MAIN
+    ========================== -->
+
+    <main class="add-product-main">
+
+
+        <!-- STEP -->
+
+        <div class="step-label">
+            STEP 01
+        </div>
+
+
+        <!-- TITLE -->
+
+        <h1 class="add-title">
+
+            Create your<br>
+            smart catalog.
+
+        </h1>
+
+
+        <!-- SUBTITLE -->
+
+        <p class="add-subtitle">
+
+            Add your product details and let
+            Karukriti prepare your catalog.
+
+        </p>
+
+
+
+        <!-- =========================
+             IMAGE UPLOAD
+        ========================== -->
+
+        <div class="upload-card">
+
+
+            <input
+                type="file"
+                id="productImage"
+                accept="image/*"
+            >
+
+
+            <label for="productImage">
+
+
+                <div class="upload-icon">
+                    📷
+                </div>
+
+
+                <strong>
+                    Add product photo
+                </strong>
+
+
+                <p>
+                    Upload a clear photo of your craft.
+                </p>
+
+
+                <span class="upload-button">
+                    Choose Photo
+                </span>
+
+
+            </label>
+
+        </div>
+
+
+
+        <!-- IMAGE PREVIEW -->
+
+        <div
+            id="imagePreview"
+            class="image-preview"
+        ></div>
+
+
+
+        <!-- =========================
+             PRODUCT NAME
+        ========================== -->
+
+        <div class="form-group">
+
+            <label for="productName">
+                Product Name
+            </label>
+
+
+            <input
+                type="text"
+                id="productName"
+                placeholder="e.g. Handmade Bamboo Basket"
+            >
+
+        </div>
+
+
+
+        <!-- =========================
+             CATEGORY
+        ========================== -->
+
+        <div class="form-group">
+
+            <label for="productCategory">
+                Craft Category
+            </label>
+
+
+            <select id="productCategory">
+
+                <option value="">
+                    Select category
+                </option>
+
+                <option value="Handicraft">
+                    Handicraft
+                </option>
+
+                <option value="Jewellery">
+                    Jewellery
+                </option>
+
+                <option value="Textile">
+                    Textile
+                </option>
+
+                <option value="Pottery">
+                    Pottery
+                </option>
+
+                <option value="Wood Craft">
+                    Wood Craft
+                </option>
+
+                <option value="Other">
+                    Other
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <!-- =========================
+             PRICE
+        ========================== -->
+
+        <div class="form-group">
+
+            <label for="productPrice">
+                Expected Price
+            </label>
+
+
+            <div class="price-input">
+
+                <span>
+                    ₹
+                </span>
+
+
+                <input
+                    type="number"
+                    id="productPrice"
+                    placeholder="Enter expected price"
+                    min="1"
+                >
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =========================
+             LANGUAGE
+        ========================== -->
+
+        <div class="form-group">
+
+            <label for="productLanguage">
+                Catalog Language
+            </label>
+
+
+            <select id="productLanguage">
+
+                <option value="English">
+                    English
+                </option>
+
+                <option value="Hindi">
+                    Hindi
+                </option>
+
+                <option value="Bengali">
+                    Bengali
+                </option>
+
+                <option value="Tamil">
+                    Tamil
+                </option>
+
+                <option value="Telugu">
+                    Telugu
+                </option>
+
+                <option value="Marathi">
+                    Marathi
+                </option>
+
+                <option value="Gujarati">
+                    Gujarati
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <!-- =========================
+             DESCRIPTION
+        ========================== -->
+
+        <div class="form-group">
+
+
+            <div class="label-row">
+
+
+                <label for="description">
+                    Product Description
+                </label>
+
+
+                <button
+                    type="button"
+                    id="voiceBtn"
+                    class="voice-button"
+                    onclick="startVoiceInput()"
+                >
+
+                    🎙 Voice
+
+                </button>
+
+
+            </div>
+
+
+            <textarea
+                id="description"
+                placeholder="Describe your product..."
+            ></textarea>
+
+
+        </div>
+
+
+
+        <!-- =========================
+             AI INFORMATION
+        ========================== -->
+
+        <div class="ai-info-box">
+
+
+            <div>
+
+
+                <strong>
+                    Smart Catalog AI
+                </strong>
+
+
+                <p>
+
+                    Karukriti will prepare your
+                    product description and
+                    recommended price.
+
+                </p>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =========================
+             GENERATE BUTTON
+        ========================== -->
+
+        <button
+            class="generate-button"
+            type="button"
+            onclick="generateCatalog()"
+        >
+
+            Generate Smart Catalog →
+
+        </button>
+
+
+    </main>
+
+
+
+    <!-- =========================
+         BOTTOM NAVIGATION
+    ========================== -->
+
+    <nav class="bottom-nav">
+
+
+        <!-- HOME -->
+
+        <button
+            class="nav-item"
+            type="button"
+            onclick="goTo('index.html')"
+        >
+
+            <span>
+                ⌂
+            </span>
+
+            <small>
+                Home
+            </small>
+
+        </button>
+
+
+
+        <!-- PRODUCTS -->
+
+        <button
+            class="nav-item"
+            type="button"
+            onclick="goTo('products.html')"
+        >
+
+            <span>
+                ▣
+            </span>
+
+            <small>
+                Products
+            </small>
+
+        </button>
+
+
+
+        <!-- ADD -->
+
+        <button
+            class="nav-item nav-add active"
+            type="button"
+            onclick="goTo('add-product.html')"
+        >
+
+            <span>
+                +
+            </span>
+
+        </button>
+
+
+
+        <!-- ORDERS -->
+
+        <button
+            class="nav-item"
+            type="button"
+            onclick="goTo('orders.html')"
+        >
+
+            <span>
+                ▤
+            </span>
+
+            <small>
+                Orders
+            </small>
+
+        </button>
+
+
+
+        <!-- PROFILE -->
+
+        <button
+            class="nav-item"
+            type="button"
+            onclick="goTo('profile.html')"
+        >
+
+            <span>
+                ◯
+            </span>
+
+            <small>
+                Profile
+            </small>
+
+        </button>
+
+
+    </nav>
+
+
+</div>
+
+
+
+<!-- =========================
+     JAVASCRIPT
+========================== -->
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Orders - Karukriti</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app-shell">
+
+<header class="top-header">
+    <button class="header-icon" onclick="goTo('index.html')">←</button>
+
+    <div class="brand-small">
+        <div>KARUKRITI</div>
+        <span>Orders</span>
+    </div>
+
+    <div class="header-icon">⋮</div>
+</header>
+
+<main class="orders-main">
+
+    <section class="orders-title">
+        <div class="step-label">YOUR BUSINESS</div>
+        <h1>Orders</h1>
+        <p>Track your customer orders easily.</p>
+    </section>
+
+    <!-- ORDER STATS -->
+    <div class="order-stats">
+
+    <div class="order-stat">
+
+        <strong>
+            0
+        </strong>
+
+        <span>
+            Total Orders
+        </span>
+
+    </div>
+
+
+    <div class="order-stat">
+
+        <strong>
+            0
+        </strong>
+
+        <span>
+            Pending
+        </span>
+
+    </div>
+
+
+    <div class="order-stat">
+
+        <strong>
+            0
+        </strong>
+
+        <span>
+            Completed
+        </span>
+
+    </div>
+
+</div>
+
+    <div class="revenue-card">
+
+    <div>
+
+        <span>
+            Total Revenue
+        </span>
+
+        <strong>
+            ₹0
+        </strong>
+
+    </div>
+
+
+    <div class="revenue-icon">
+        ₹
+    </div>
+
+</div>
+
+    <!-- RECENT ORDERS -->
+    <section class="orders-section">
+
+        <div class="section-heading">
+            <div>
+                <h2>Recent Orders</h2>
+                <p>Your latest customer orders</p>
+            </div>
+        </div>
+
+        <div class="order-list">
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+
+    <button class="nav-item" onclick="goTo('index.html')">
+        <span>⌂</span>
+        <small>Home</small>
+    </button>
+
+    <button class="nav-item" onclick="goTo('products.html')">
+        <span>▣</span>
+        <small>Products</small>
+    </button>
+
+    <button class="nav-add" onclick="goTo('add-product.html')" aria-label="Add Product">
+        <span>+</span>
+    </button>
+
+    <button class="nav-item active" onclick="goTo('orders.html')">
+        <span>♧</span>
+        <small>Orders</small>
+    </button>
+
+    <button class="nav-item" onclick="goTo('profile.html')">
+        <span>♙</span>
+        <small>Profile</small>
+    </button>
+
+</nav>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

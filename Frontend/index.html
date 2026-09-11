@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Karukriti</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- MOBILE APP FRAME -->
+
+<div class="app-shell">
+
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="home-header">
+
+        <div>
+
+            <div class="brand">
+                KARUKRITI
+            </div>
+
+            <div class="tagline">
+                From Tradition to Tomorrow
+            </div>
+
+        </div>
+
+
+        <div class="notification">
+            ♡
+        </div>
+
+    </header>
+
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="home-main">
+
+
+        <!-- GREETING -->
+
+        <section class="welcome">
+
+            <div class="welcome-small">
+                NAMASTE, ARTISAN 👋
+            </div>
+
+            <h1>
+                Let's turn your<br>
+                craft into a story.
+            </h1>
+
+            <p>
+                Showcase your handmade creations
+                with the power of AI.
+            </p>
+
+        </section>
+
+
+
+        <!-- AI HERO CARD -->
+
+        <section class="ai-card">
+
+            <div class="ai-badge">
+                ✦ AI POWERED
+            </div>
+
+
+            <h2>
+                Create Your<br>
+                Smart Catalog
+            </h2>
+
+
+            <p>
+                Turn your product photo and details
+                into a professional catalog instantly.
+            </p>
+
+
+            <button
+                class="hero-button"
+                onclick="goTo('add-product.html')"
+            >
+                Create Catalog →
+            </button>
+
+        </section>
+
+
+
+        <!-- QUICK ACTIONS -->
+
+        <section class="home-section">
+
+            <div class="section-title">
+                Quick Actions
+            </div>
+
+
+            <div class="quick-grid">
+
+
+                <!-- ADD PRODUCT -->
+
+                <button
+                    class="quick-card"
+                    onclick="goTo('add-product.html')"
+                >
+
+                    <div class="quick-icon">
+                        +
+                    </div>
+
+                    <strong>
+                        Add Product
+                    </strong>
+
+                    <span>
+                        Add your handmade product
+                    </span>
+
+                </button>
+
+
+
+                <!-- VOICE -->
+
+                <button
+                    class="quick-card"
+                    onclick="goTo('add-product.html')"
+                >
+
+                    <div class="quick-icon">
+                        🎙
+                    </div>
+
+                    <strong>
+                        Voice Input
+                    </strong>
+
+                    <span>
+                        Describe your product easily
+                    </span>
+
+                </button>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- MY PRODUCTS -->
+
+        <section class="home-section">
+
+
+            <div class="products-heading">
+
+                <div>
+
+                    <div class="section-title">
+                        My Products
+                    </div>
+
+                    <div class="section-subtitle">
+                        Your digital shelf
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="view-all"
+                    onclick="goTo('products.html')"
+                >
+                    View All →
+                </button>
+
+            </div>
+
+
+
+            <!-- PRODUCT PREVIEW -->
+
+            <div
+                id="homeProducts"
+                class="home-product-list"
+            >
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- ================= BOTTOM NAVIGATION ================= -->
+
+    <nav class="bottom-nav">
+
+
+        <!-- HOME -->
+
+        <button
+            class="nav-item active"
+            onclick="goTo('index.html')"
+        >
+
+            <span>⌂</span>
+
+            <small>
+                Home
+            </small>
+
+        </button>
+
+
+
+        <!-- PRODUCTS -->
+
+        <button
+            class="nav-item"
+            onclick="goTo('products.html')"
+        >
+
+            <span>▣</span>
+
+            <small>
+                Products
+            </small>
+
+        </button>
+
+
+
+        <!-- CENTER PLUS -->
+
+        <button
+            class="nav-add"
+            onclick="goTo('add-product.html')"
+            aria-label="Add Product"
+        >
+
+            <span>
+                +
+            </span>
+
+        </button>
+
+
+
+        <!-- ORDERS -->
+
+        <button
+            class="nav-item"
+            onclick="goTo('orders.html')"
+        >
+
+            <span>♧</span>
+
+            <small>
+                Orders
+            </small>
+
+        </button>
+
+
+
+        <!-- PROFILE -->
+
+        <button
+            class="nav-item"
+            onclick="goTo('profile.html')"
+        >
+
+            <span>♙</span>
+
+            <small>
+                Profile
+            </small>
+
+        </button>
+
+
+    </nav>
+
+
+</div>
+
+
+
+<!-- JAVASCRIPT -->
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>

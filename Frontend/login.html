@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Sign In - Karukriti</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="app-shell auth-shell">
+
+
+    <main class="auth-main">
+
+
+        <div class="auth-brand">
+
+            <div class="auth-logo">
+                K
+            </div>
+
+            <div class="brand">
+                KARUKRITI
+            </div>
+
+            <div class="tagline">
+                FROM TRADITION TO TOMORROW
+            </div>
+
+        </div>
+
+
+        <section class="auth-content">
+
+
+            <div class="auth-welcome">
+
+                <span>
+                    WELCOME BACK
+                </span>
+
+                <h1>
+                    Sign in to your<br>
+                    artisan account.
+                </h1>
+
+                <p>
+                    Manage your products,
+                    catalog and business.
+                </p>
+
+            </div>
+
+
+            <div
+                id="loginMessage"
+                class="auth-message"
+            ></div>
+
+
+            <div class="auth-form">
+
+
+                <div class="auth-field">
+
+                    <label>
+                        Email or Mobile Number
+                    </label>
+
+                    <input
+                        type="text"
+                        id="loginEmail"
+                        placeholder="Enter email or mobile"
+                    >
+
+                </div>
+
+
+                <div class="auth-field">
+
+                    <label>
+                        Password
+                    </label>
+
+
+                    <div class="password-wrap">
+
+                        <input
+                            type="password"
+                            id="loginPassword"
+                            placeholder="Enter password"
+                        >
+
+
+                        <button
+                            type="button"
+                            onclick="togglePassword(
+                                'loginPassword',
+                                this
+                            )"
+                        >
+                            Show
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="forgot-row">
+
+                    <a
+                        href="forgot-password.html"
+                    >
+                        Forgot password?
+                    </a>
+
+                </div>
+
+
+                <button
+                    class="auth-primary"
+                    onclick="loginUser()"
+                >
+                    Sign In →
+                </button>
+
+
+            </div>
+
+
+            <p class="auth-bottom">
+
+                Don't have an account?
+
+                <button
+                    onclick="goTo('signup.html')"
+                >
+                    Create Account
+                </button>
+
+            </p>
+
+
+        </section>
+
+
+    </main>
+
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
