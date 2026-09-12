@@ -10,7 +10,7 @@ from .routers import (
     catalog,
     orders,
     profile,
-    voice
+    pricing
 )
 
 
@@ -86,7 +86,7 @@ app.include_router(
 )
 
 app.include_router(
-    voice.router
+    pricing.router
 )
 
 # ==========================
@@ -103,6 +103,7 @@ def root():
 
 @app.get("/health")
 def health():
+
     from .database import db
 
     return {

@@ -32,13 +32,37 @@ class TokenResponse(BaseModel):
 
 
 class ProductCreate(BaseModel):
-    name: str = Field(min_length=2, max_length=150)
+
+    name: str = Field(
+        min_length=2,
+        max_length=150
+    )
     category: str
     description: str = ""
-    price: float = Field(gt=0)
+    price: float = Field(
+        gt=0
+    )
     language: str = "English"
     image_url: Optional[str] = None
-
+    labor_hours: float = Field(
+        gt=0
+    )
+    quantity: int = Field(
+        gt=0
+    )
+    length: float = Field(
+        gt=0
+    )
+    width: float = Field(
+        gt=0
+    )
+    height: float = Field(
+        gt=0
+    )
+    item_type: str
+    material_type: str
+    finish_type: str
+    urgency_level: str
 
 class ProfileUpdate(BaseModel):
     name: str = Field(min_length=2, max_length=100)
@@ -47,3 +71,41 @@ class ProfileUpdate(BaseModel):
     category: str
     location: str
     language: str
+
+class PricingRequest(BaseModel):
+
+    labor_hours: float = Field(
+        gt=0
+    )
+
+    quantity: int = Field(
+        gt=0
+    )
+
+    length: float = Field(
+        gt=0
+    )
+
+    width: float = Field(
+        gt=0
+    )
+
+    height: float = Field(
+        gt=0
+    )
+
+    item_type: str = Field(
+        min_length=2
+    )
+
+    material_type: str = Field(
+        min_length=2
+    )
+
+    finish_type: str = Field(
+        min_length=2
+    )
+
+    urgency_level: str = Field(
+        min_length=2
+    )

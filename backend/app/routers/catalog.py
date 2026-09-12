@@ -1,18 +1,12 @@
+from datetime import datetime, timezone
 from pathlib import Path
 from uuid import uuid4
-from datetime import datetime, timezone
 
-from fastapi import (
-    APIRouter,
-    Depends,
-    File,
-    Form,
-    UploadFile,
-    HTTPException
-)
+from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile
 
 from ..auth import get_current_user
-from ..vision_ai import enhance_artisan_photo, ImageProcessingError
+from ..database import products_collection
+from ..pricing_ai import predict_price
 
 
 router = APIRouter(
@@ -20,6 +14,10 @@ router = APIRouter(
     tags=["Catalog"]
 )
 
+
+# =====================================================
+# UPLOAD DIRECTORY
+# =====================================================
 
 BASE_DIR = Path(__file__).resolve().parents[2]
 
@@ -30,149 +28,238 @@ UPLOAD_DIR.mkdir(
 )
 
 
+# =====================================================
+# GENERATE SMART CATALOG
+# =====================================================
+
 @router.post("/generate")
 async def generate_catalog(
+
+    # -------------------------------------------------
+    # Existing product information
+    # -------------------------------------------------
+
     name: str = Form(...),
+
     category: str = Form(...),
-    price: float = Form(...),
+
     description: str = Form(""),
+
     language: str = Form("English"),
+
+    # Artisan's own expected price.
+    # Optional because AI will calculate the recommended price.
+    price: float = Form(0),
+
+    # -------------------------------------------------
+    # Pricing AI inputs
+    # -------------------------------------------------
+
+    labor_hours: float = Form(...),
+
+    quantity: int = Form(...),
+
+    length: float = Form(...),
+
+    width: float = Form(...),
+
+    height: float = Form(...),
+
+    item_type: str = Form(...),
+
+    material_type: str = Form(...),
+
+    finish_type: str = Form(...),
+
+    urgency_level: str = Form(...),
+
+    # -------------------------------------------------
+    # Product image
+    # -------------------------------------------------
+
     image: UploadFile | None = File(None),
+
+    # -------------------------------------------------
+    # Logged-in artisan
+    # -------------------------------------------------
+
     current_user=Depends(get_current_user)
 ):
 
-    image_url = None
+    # =================================================
+    # BASIC VALIDATION
+    # =================================================
 
-    # ==========================================
-    # IMAGE PROCESSING
-    # ==========================================
+    if labor_hours <= 0:
+        raise HTTPException(
+            status_code=400,
+            detail="Labor hours must be greater than 0."
+        )
+
+    if quantity <= 0:
+        raise HTTPException(
+            status_code=400,
+            detail="Quantity must be greater than 0."
+        )
+
+    if length <= 0 or width <= 0 or height <= 0:
+        raise HTTPException(
+            status_code=400,
+            detail="Product dimensions must be greater than 0."
+        )
+
+
+    # =================================================
+    # IMAGE UPLOAD
+    # =================================================
+
+    image_url = None
 
     if image:
 
         # Check content type
-        allowed_types = [
+        allowed_types = {
             "image/jpeg",
             "image/png",
             "image/webp",
-            "image/avif",
-            "image/heic",
-            "image/heif"
-        ]
+            "image/jpg"
+        }
 
         if image.content_type not in allowed_types:
 
             raise HTTPException(
                 status_code=400,
-                detail="Unsupported image format."
+                detail="Only JPG, JPEG, PNG and WEBP images are allowed."
             )
 
 
-        try:
-
-            # Read uploaded image
-            image_bytes = await image.read()
-
-            if not image_bytes:
-
-                raise HTTPException(
-                    status_code=400,
-                    detail="Uploaded image is empty."
-                )
+        # Read image
+        image_bytes = await image.read()
 
 
-            # ======================================
-            # AI IMAGE ENHANCEMENT
-            # ======================================
-
-            processed_bytes = enhance_artisan_photo(
-                image_bytes
-            )
-
-
-        except ImageProcessingError as e:
+        if not image_bytes:
 
             raise HTTPException(
-                status_code=422,
-                detail=str(e)
+                status_code=400,
+                detail="Uploaded image is empty."
             )
 
 
-        except HTTPException:
+        # Generate safe unique filename
+        original_name = image.filename or "product.jpg"
 
-            raise
-
-
-        except Exception as e:
-
-            raise HTTPException(
-                status_code=500,
-                detail=f"Image processing failed: {str(e)}"
-            )
+        extension = Path(
+            original_name
+        ).suffix.lower()
 
 
-        # ======================================
-        # SAVE ENHANCED IMAGE
-        # ======================================
+        if extension not in {
+            ".jpg",
+            ".jpeg",
+            ".png",
+            ".webp"
+        }:
 
-        filename = f"{uuid4().hex}_enhanced.jpg"
+            extension = ".jpg"
+
+
+        filename = (
+            f"{uuid4().hex}"
+            f"{extension}"
+        )
+
 
         file_path = UPLOAD_DIR / filename
 
 
-        try:
+        # Save image
+        with open(
+            file_path,
+            "wb"
+        ) as buffer:
 
-            with open(
-                file_path,
-                "wb"
-            ) as file:
-
-                file.write(processed_bytes)
-
-        except Exception as e:
-
-            raise HTTPException(
-                status_code=500,
-                detail=f"Failed to save enhanced image: {str(e)}"
+            buffer.write(
+                image_bytes
             )
 
 
-        image_url = f"/uploads/{filename}"
-
-
-    # ==========================================
-    # DESCRIPTION
-    # ==========================================
-
-    if not description.strip():
-
-        description = (
-            f"A beautiful {category} handcrafted "
-            f"by an artisan using traditional techniques."
+        image_url = (
+            f"/uploads/{filename}"
         )
 
 
-    # ==========================================
-    # PRICE
-    # ==========================================
+    # =================================================
+    # AI PRICE PREDICTION
+    # =================================================
 
-    recommended = round(
-        (price * 1.10) / 10
-    ) * 10
+    try:
 
-    market_min = round(
-        (recommended * 0.85) / 10
-    ) * 10
+        pricing = predict_price(
 
-    market_max = round(
-        (recommended * 1.20) / 10
-    ) * 10
+            labor_hours=labor_hours,
+
+            quantity=quantity,
+
+            length=length,
+
+            width=width,
+
+            height=height,
+
+            item_type=item_type,
+
+            material_type=material_type,
+
+            finish_type=finish_type,
+
+            urgency_level=urgency_level
+
+        )
+
+    except Exception as e:
+
+        # If pricing model fails, don't silently
+        # create a product with a fake price.
+
+        raise HTTPException(
+            status_code=500,
+            detail=f"Price prediction failed: {str(e)}"
+        )
 
 
-    # ==========================================
-    # RESPONSE
-    # ==========================================
+    # =================================================
+    # GET AI PRICES
+    # =================================================
 
-    return {
+    recommended_price = pricing[
+        "predicted_price"
+    ]
+
+    market_min = pricing[
+        "market_min"
+    ]
+
+    market_max = pricing[
+        "market_max"
+    ]
+
+
+    # =================================================
+    # CREATE PRODUCT DOCUMENT
+    # =================================================
+
+    product_document = {
+
+        # ---------------------------------------------
+        # Ownership
+        # ---------------------------------------------
+
+        "user_id": current_user["_id"],
+
+
+        # ---------------------------------------------
+        # Product information
+        # ---------------------------------------------
 
         "name": name,
 
@@ -180,21 +267,173 @@ async def generate_catalog(
 
         "description": description,
 
+        "language": language,
+
+
+        # ---------------------------------------------
+        # Artisan expected price
+        # ---------------------------------------------
+
         "price": price,
 
-        "recommended_price": recommended,
+
+        # ---------------------------------------------
+        # AI pricing
+        # ---------------------------------------------
+
+        "recommended_price": recommended_price,
 
         "market_min": market_min,
 
         "market_max": market_max,
 
+        "pricing_source": (
+            "XGBoost Dynamic Pricing Model"
+        ),
+
+
+        # ---------------------------------------------
+        # Pricing model inputs
+        # ---------------------------------------------
+
+        "labor_hours": labor_hours,
+
+        "quantity": quantity,
+
+        "length": length,
+
+        "width": width,
+
+        "height": height,
+
+        "item_type": item_type,
+
+        "material_type": material_type,
+
+        "finish_type": finish_type,
+
+        "urgency_level": urgency_level,
+
+
+        # ---------------------------------------------
+        # Image
+        # ---------------------------------------------
+
         "image_url": image_url,
 
-        "language": language,
 
-        "image_enhanced": bool(image_url),
+        # ---------------------------------------------
+        # Product status
+        # ---------------------------------------------
+
+        "status": "Draft",
+
+
+        # ---------------------------------------------
+        # Timestamp
+        # ---------------------------------------------
 
         "created_at": datetime.now(
             timezone.utc
-        ).isoformat()
+        )
+
+    }
+
+
+    # =================================================
+    # SAVE TO MONGODB
+    # =================================================
+
+    try:
+
+        result = products_collection.insert_one(
+            product_document
+        )
+
+    except Exception as e:
+
+        # If database insertion fails after image upload,
+        # remove the uploaded image.
+
+        if image_url:
+
+            try:
+                file_path.unlink(
+                    missing_ok=True
+                )
+            except Exception:
+                pass
+
+        raise HTTPException(
+            status_code=500,
+            detail=f"Could not save product: {str(e)}"
+        )
+
+
+    # =================================================
+    # RESPONSE
+    # =================================================
+
+    return {
+
+        "message": (
+            "Smart catalog generated successfully."
+        ),
+
+        "product_id": str(
+            result.inserted_id
+        ),
+
+        "name": name,
+
+        "category": category,
+
+        "description": description,
+
+        "language": language,
+
+        "image_url": image_url,
+
+        # Artisan's own expected price
+        "price": price,
+
+        # AI predicted price
+        "recommended_price": recommended_price,
+
+        "market_min": market_min,
+
+        "market_max": market_max,
+
+        "currency": pricing[
+            "currency"
+        ],
+
+        "pricing_source": (
+            "XGBoost Dynamic Pricing Model"
+        ),
+
+        "pricing_inputs": {
+
+            "labor_hours": labor_hours,
+
+            "quantity": quantity,
+
+            "length": length,
+
+            "width": width,
+
+            "height": height,
+
+            "item_type": item_type,
+
+            "material_type": material_type,
+
+            "finish_type": finish_type,
+
+            "urgency_level": urgency_level
+
+        },
+
+        "status": "Draft"
+
     }
