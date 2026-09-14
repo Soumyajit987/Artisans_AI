@@ -22,7 +22,7 @@
 <div class="app-shell">
 
 
-    <!-- HEADER -->
+    <!-- ================= HEADER ================= -->
 
     <header class="top-header">
 
@@ -50,7 +50,7 @@
 
 
 
-    <!-- MAIN -->
+    <!-- ================= MAIN ================= -->
 
     <main class="products-main">
 
@@ -75,7 +75,7 @@
 
 
 
-        <!-- SELLER CARD -->
+        <!-- ================= SELLER CARD ================= -->
 
         <div class="seller-card">
 
@@ -109,50 +109,57 @@
 
 
 
-        <!-- STATS -->
+        <!-- ================= STATS ================= -->
 
-        <div class="stat-box">
-
-    <strong id="productCount">
-        0
-    </strong>
-
-    <span>
-        Products
-    </span>
-
-</div>
+        <div class="profile-stats">
 
 
+            <div class="stat-box">
 
-    <div class="profile-stat">
+                <strong id="productCount">
+                    0
+                </strong>
 
-        <strong id="profileOrderCount">
-            0
-        </strong>
+                <span>
+                    Products
+                </span>
 
-        <span>
-            Orders
-        </span>
-
-    </div>
+            </div>
 
 
-    <div class="profile-stat">
 
-        <strong>
-            —
-        </strong>
+            <div class="profile-stat">
 
-        <span>
-            Rating
-        </span>
+                <strong id="profileOrderCount">
+                    0
+                </strong>
 
-    </div>
+                <span>
+                    Orders
+                </span>
 
-</div>
+            </div>
 
-        <!-- COLLECTION TITLE -->
+
+
+            <div class="profile-stat">
+
+                <strong>
+                    —
+                </strong>
+
+                <span>
+                    Rating
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ================= COLLECTION TITLE ================= -->
 
         <div class="section-heading">
 
@@ -179,16 +186,17 @@
 
 
 
-        <!-- PRODUCT LIST -->
+        <!-- ================= PRODUCT LIST ================= -->
 
         <div
-        id="productList"
-        class="product-grid">
+            id="productList"
+            class="product-grid"
+        >
         </div>
 
 
 
-        <!-- EMPTY STATE -->
+        <!-- ================= EMPTY STATE ================= -->
 
         <section
             id="emptyProducts"
@@ -223,17 +231,21 @@
 
 
 
-    <!-- BOTTOM NAV -->
+    <!-- ================= BOTTOM NAV ================= -->
 
     <nav class="bottom-nav">
 
+
+        <!-- HOME -->
 
         <button
             class="nav-item"
             onclick="goTo('index.html')"
         >
 
-            <span>⌂</span>
+            <span>
+                ⌂
+            </span>
 
             <small>
                 Home
@@ -243,12 +255,16 @@
 
 
 
+        <!-- PRODUCTS -->
+
         <button
             class="nav-item active"
             onclick="goTo('products.html')"
         >
 
-            <span>▣</span>
+            <span>
+                ▣
+            </span>
 
             <small>
                 Products
@@ -258,9 +274,12 @@
 
 
 
+        <!-- CENTER PLUS -->
+
         <button
             class="nav-add"
             onclick="goTo('add-product.html')"
+            aria-label="Add Product"
         >
 
             <span>
@@ -271,12 +290,16 @@
 
 
 
+        <!-- ORDERS -->
+
         <button
             class="nav-item"
             onclick="goTo('orders.html')"
         >
 
-            <span>♧</span>
+            <span>
+                ♧
+            </span>
 
             <small>
                 Orders
@@ -286,12 +309,16 @@
 
 
 
+        <!-- PROFILE -->
+
         <button
             class="nav-item"
             onclick="goTo('profile.html')"
         >
 
-            <span>♙</span>
+            <span>
+                ♙
+            </span>
 
             <small>
                 Profile
@@ -305,6 +332,8 @@
 
 </div>
 
+
+<!-- JAVASCRIPT -->
 
 <script src="script.js"></script>
 

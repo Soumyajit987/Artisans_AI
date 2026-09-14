@@ -1,39 +1,25 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Smart Catalog - Karukriti</title>
 
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
-
+    <link rel="stylesheet" href="style.css">
 </head>
-
 
 <body>
 
-
 <div class="app-shell">
 
-
-    <!-- HEADER -->
-
+    <!-- ================= HEADER ================= -->
     <header class="top-header">
 
         <button
             class="header-icon"
             onclick="goTo('add-product.html')"
+            aria-label="Back"
         >
             ←
         </button>
@@ -42,235 +28,798 @@
             KARUKRITI
         </div>
 
-        <span></span>
+        <div class="header-icon">
+            ✦
+        </div>
 
     </header>
 
 
-    <!-- MAIN -->
+    <!-- ================= MAIN CONTENT ================= -->
+    <main class="catalog-result-main">
 
-    <main class="catalog-main">
-
+        <!-- Step -->
+        <div class="step-label">
+            STEP 02 OF 02
+        </div>
 
         <h1 class="catalog-title">
             Your smart<br>
             catalog is ready.
         </h1>
 
-
         <p class="catalog-subtitle">
-            Review the information generated
-            for your product.
+            We created a professional product listing and estimated a suitable price using our AI pricing model.
         </p>
 
 
-        <!-- PRODUCT CARD -->
+        <!-- ================= PRODUCT IMAGE ================= -->
+        <div class="result-image-card">
 
-        <div class="catalog-card">
+            <img
+                id="resultImage"
+                src=""
+                alt="Product image"
+                style="display: none;"
+            >
 
-
-            <!-- IMAGE -->
-
-            <div class="catalog-image-wrap">
-
-                <img
-                    id="resultImage"
-                    src=""
-                    alt="Product image"
-                >
-
-                <div class="ai-photo-badge">
-                    ✦ AI ENHANCED
-                </div>
-
+            <div
+                id="resultImagePlaceholder"
+                class="result-image-placeholder"
+            >
+                <span>📷</span>
+                <p>Product image</p>
             </div>
 
-
-            <!-- CONTENT -->
-
-            <div class="catalog-content">
+        </div>
 
 
-                <span
-                    id="resultCategory"
-                    class="catalog-category"
-                >
-                    Category
+        <!-- ================= PRODUCT INFORMATION ================= -->
+        <div class="result-card">
+
+            <div class="result-section">
+
+                <span class="result-label">
+                    PRODUCT NAME
                 </span>
 
-
                 <h2 id="resultName">
-                    Product Name
+                    -
                 </h2>
 
+            </div>
 
-                <p id="resultDescription">
-                    Product description
+
+            <div class="result-section">
+
+                <span class="result-label">
+                    CATEGORY
+                </span>
+
+                <p id="resultCategory">
+                    -
                 </p>
 
-
-                <!-- PRICE -->
-
-                <div class="price-section">
-
-                    <div>
-
-                        <span class="price-label">
-                            Recommended Price
-                        </span>
-
-                        <strong id="recommendedPrice">
-                            ₹0
-                        </strong>
-
-                    </div>
+            </div>
 
 
-                    <span class="price-tag">
-                        SMART PRICE
+            <div class="result-section">
+
+                <span class="result-label">
+                    DESCRIPTION
+                </span>
+
+                <p id="resultDescription">
+                    -
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= AI PRICE ================= -->
+        <div class="pricing-card">
+
+            <div class="pricing-card-header">
+
+                <div>
+                    <span class="result-label">
+                        AI RECOMMENDED PRICE
                     </span>
+
+                    <h2 id="recommendedPrice">
+                        ₹0
+                    </h2>
+                </div>
+
+                <div class="ai-price-icon">
+                    ✦
+                </div>
+
+            </div>
+
+
+            <p class="pricing-description">
+                Estimated using the XGBoost dynamic pricing model based on your product's materials, labour, dimensions, quantity, finish and delivery urgency.
+            </p>
+
+
+            <!-- Market Range -->
+            <div class="market-range">
+
+                <div class="market-range-item">
+
+                    <span>
+                        Estimated lower range
+                    </span>
+
+                    <strong id="marketMin">
+                        ₹0
+                    </strong>
 
                 </div>
 
 
-                <!-- MARKET RANGE -->
+                <div class="market-range-divider">
+                    —
+                </div>
 
-                <div class="market-range">
+
+                <div class="market-range-item">
 
                     <span>
-                        Market range
+                        Estimated upper range
                     </span>
 
-                    <strong>
+                    <strong id="marketMax">
+                        ₹0
+                    </strong>
 
-                        ₹<span id="marketMin">
-                            0
-                        </span>
+                </div>
 
+            </div>
+
+
+            <div class="pricing-note">
+
+                <span>ⓘ</span>
+
+                <p>
+                    This range is an AI estimate around the predicted price. It is not a live market-price quotation.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= PRICING INPUT SUMMARY ================= -->
+        <div
+            id="pricingInputsCard"
+            class="result-card pricing-inputs-card"
+        >
+
+            <div class="result-card-heading">
+                <span class="result-label">
+                    PRICE PREDICTION DETAILS
+                </span>
+            </div>
+
+
+            <div class="pricing-details-grid">
+
+                <div class="pricing-detail-item">
+
+                    <span>
+                        Product Type
+                    </span>
+
+                    <strong id="resultItemType">
                         -
-
-                        ₹<span id="marketMax">
-                            0
-                        </span>
-
                     </strong>
 
                 </div>
 
+
+                <div class="pricing-detail-item">
+
+                    <span>
+                        Material
+                    </span>
+
+                    <strong id="resultMaterialType">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="pricing-detail-item">
+
+                    <span>
+                        Labour Hours
+                    </span>
+
+                    <strong id="resultLaborHours">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="pricing-detail-item">
+
+                    <span>
+                        Quantity
+                    </span>
+
+                    <strong id="resultQuantity">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="pricing-detail-item">
+
+                    <span>
+                        Dimensions
+                    </span>
+
+                    <strong id="resultDimensions">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="pricing-detail-item">
+
+                    <span>
+                        Finish
+                    </span>
+
+                    <strong id="resultFinishType">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="pricing-detail-item">
+
+                    <span>
+                        Delivery
+                    </span>
+
+                    <strong id="resultUrgencyLevel">
+                        -
+                    </strong>
+
+                </div>
 
             </div>
 
         </div>
 
 
-        <!-- FEATURES -->
+        <!-- ================= EXPECTED PRICE ================= -->
+        <div
+            id="expectedPriceCard"
+            class="result-card expected-price-card"
+        >
 
-        <div class="catalog-features">
+            <div class="result-section">
 
-            <div class="feature-item">
+                <span class="result-label">
+                    YOUR EXPECTED PRICE
+                </span>
 
-                <div class="feature-icon">
-                    ✓
-                </div>
+                <h3 id="resultExpectedPrice">
+                    -
+                </h3>
 
-                <div>
-
-                    <strong>
-                        Product Catalog
-                    </strong>
-
-                    <span>
-                        Details prepared successfully
-                    </span>
-
-                </div>
-
-                <b>
-                    ✓
-                </b>
-
-            </div>
-
-
-            <div class="feature-item">
-
-                <div class="feature-icon">
-                    ₹
-                </div>
-
-                <div>
-
-                    <strong>
-                        Smart Pricing
-                    </strong>
-
-                    <span>
-                        Recommended market price generated
-                    </span>
-
-                </div>
-
-                <b>
-                    ✓
-                </b>
-
-            </div>
-
-
-            <div class="feature-item">
-
-                <div class="feature-icon">
-                    AI
-                </div>
-
-                <div>
-
-                    <strong>
-                        AI Assistance
-                    </strong>
-
-                    <span>
-                        Ready for marketplace publishing
-                    </span>
-
-                </div>
-
-                <b>
-                    ✓
-                </b>
+                <p id="priceComparisonMessage">
+                    -
+                </p>
 
             </div>
 
         </div>
 
 
-        <!-- PUBLISH -->
+        <!-- ================= AI INFORMATION ================= -->
+        <div class="ai-info-box catalog-ai-box">
+
+            <div class="ai-info-icon">
+                ✦
+            </div>
+
+            <div>
+
+                <strong>
+                    Smart Catalog AI
+                </strong>
+
+                <p>
+                    Your product information and AI-generated price recommendation are ready. Publish your catalog when you're satisfied.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= ACTION BUTTONS ================= -->
 
         <button
-            class="publish-button"
+            type="button"
+            class="generate-button publish-button"
             onclick="publishProduct()"
         >
-            Publish Product
-            <span>→</span>
+            Publish Product →
         </button>
 
 
         <button
-            class="edit-catalog-button"
+            type="button"
+            class="secondary-button"
             onclick="goTo('add-product.html')"
         >
-            ← Edit Catalog
+            ← Edit Product
         </button>
 
 
     </main>
 
 
+    <!-- ================= BOTTOM NAVIGATION ================= -->
+    <nav class="bottom-nav">
+
+        <button
+            class="nav-item"
+            onclick="goTo('index.html')"
+        >
+            <span>⌂</span>
+            <small>Home</small>
+        </button>
+
+
+        <button
+            class="nav-item"
+            onclick="goTo('products.html')"
+        >
+            <span>▣</span>
+            <small>Products</small>
+        </button>
+
+
+        <button
+            class="nav-add active"
+            onclick="goTo('add-product.html')"
+            aria-label="Add Product"
+        >
+            <span>+</span>
+        </button>
+
+
+        <button
+            class="nav-item"
+            onclick="goTo('orders.html')"
+        >
+            <span>♧</span>
+            <small>Orders</small>
+        </button>
+
+
+        <button
+            class="nav-item"
+            onclick="goTo('profile.html')"
+        >
+            <span>♙</span>
+            <small>Profile</small>
+        </button>
+
+    </nav>
+
 </div>
 
 
+<!-- ================= SCRIPT ================= -->
 <script src="script.js"></script>
 
-</body>
 
+<!-- ================= RESULT PAGE LOGIC ================= -->
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    loadCatalogResult();
+
+});
+
+
+function loadCatalogResult() {
+
+    const catalogData =
+        JSON.parse(
+            sessionStorage.getItem("karukritiCatalog")
+        );
+
+    if (!catalogData) {
+
+        console.warn(
+            "No catalog data found."
+        );
+
+        return;
+
+    }
+
+
+    /* ================= BASIC INFORMATION ================= */
+
+    const nameElement =
+        document.getElementById("resultName");
+
+    const categoryElement =
+        document.getElementById("resultCategory");
+
+    const descriptionElement =
+        document.getElementById("resultDescription");
+
+
+    if (nameElement) {
+
+        nameElement.textContent =
+            catalogData.name || "-";
+
+    }
+
+
+    if (categoryElement) {
+
+        categoryElement.textContent =
+            catalogData.category || "-";
+
+    }
+
+
+    if (descriptionElement) {
+
+        descriptionElement.textContent =
+            catalogData.description || "-";
+
+    }
+
+
+    /* ================= IMAGE ================= */
+
+    const imageElement =
+        document.getElementById("resultImage");
+
+    const imagePlaceholder =
+        document.getElementById(
+            "resultImagePlaceholder"
+        );
+
+
+    if (
+        imageElement &&
+        catalogData.image_url
+    ) {
+
+        imageElement.src =
+            catalogData.image_url;
+
+        imageElement.style.display =
+            "block";
+
+
+        if (imagePlaceholder) {
+
+            imagePlaceholder.style.display =
+                "none";
+
+        }
+
+    }
+
+
+    /* ================= AI PRICING ================= */
+
+    const recommendedPrice =
+        Number(
+            catalogData.recommended_price || 0
+        );
+
+
+    const marketMin =
+        Number(
+            catalogData.market_min || 0
+        );
+
+
+    const marketMax =
+        Number(
+            catalogData.market_max || 0
+        );
+
+
+    const recommendedPriceElement =
+        document.getElementById(
+            "recommendedPrice"
+        );
+
+
+    const marketMinElement =
+        document.getElementById(
+            "marketMin"
+        );
+
+
+    const marketMaxElement =
+        document.getElementById(
+            "marketMax"
+        );
+
+
+    if (recommendedPriceElement) {
+
+        recommendedPriceElement.textContent =
+            formatIndianCurrency(
+                recommendedPrice
+            );
+
+    }
+
+
+    if (marketMinElement) {
+
+        marketMinElement.textContent =
+            formatIndianCurrency(
+                marketMin
+            );
+
+    }
+
+
+    if (marketMaxElement) {
+
+        marketMaxElement.textContent =
+            formatIndianCurrency(
+                marketMax
+            );
+
+    }
+
+
+    /* ================= PRICING INPUTS ================= */
+
+    const pricingInputs =
+        catalogData.pricing_inputs || {};
+
+
+    setText(
+        "resultItemType",
+        formatText(
+            pricingInputs.item_type
+        )
+    );
+
+
+    setText(
+        "resultMaterialType",
+        formatText(
+            pricingInputs.material_type
+        )
+    );
+
+
+    setText(
+        "resultLaborHours",
+        pricingInputs.labor_hours
+            ? `${pricingInputs.labor_hours} hrs`
+            : "-"
+    );
+
+
+    setText(
+        "resultQuantity",
+        pricingInputs.quantity || "-"
+    );
+
+
+    if (
+        pricingInputs.length &&
+        pricingInputs.width &&
+        pricingInputs.height
+    ) {
+
+        setText(
+            "resultDimensions",
+            `${pricingInputs.length} × ${pricingInputs.width} × ${pricingInputs.height} cm`
+        );
+
+    }
+
+
+    setText(
+        "resultFinishType",
+        formatText(
+            pricingInputs.finish_type
+        )
+    );
+
+
+    setText(
+        "resultUrgencyLevel",
+        formatText(
+            pricingInputs.urgency_level
+        )
+    );
+
+
+    /* ================= EXPECTED PRICE ================= */
+
+    const expectedPrice =
+        Number(
+            catalogData.price || 0
+        );
+
+
+    const expectedPriceCard =
+        document.getElementById(
+            "expectedPriceCard"
+        );
+
+
+    const expectedPriceElement =
+        document.getElementById(
+            "resultExpectedPrice"
+        );
+
+
+    const comparisonElement =
+        document.getElementById(
+            "priceComparisonMessage"
+        );
+
+
+    if (
+        expectedPrice > 0
+    ) {
+
+        if (expectedPriceCard) {
+
+            expectedPriceCard.style.display =
+                "block";
+
+        }
+
+
+        if (expectedPriceElement) {
+
+            expectedPriceElement.textContent =
+                formatIndianCurrency(
+                    expectedPrice
+                );
+
+        }
+
+
+        if (comparisonElement) {
+
+            if (
+                expectedPrice < recommendedPrice
+            ) {
+
+                comparisonElement.textContent =
+                    "Your expected price is below the AI recommendation.";
+
+            }
+            else if (
+                expectedPrice > recommendedPrice
+            ) {
+
+                comparisonElement.textContent =
+                    "Your expected price is above the AI recommendation.";
+
+            }
+            else {
+
+                comparisonElement.textContent =
+                    "Your expected price matches the AI recommendation.";
+
+            }
+
+        }
+
+    }
+    else {
+
+        if (expectedPriceCard) {
+
+            expectedPriceCard.style.display =
+                "none";
+
+        }
+
+    }
+
+}
+
+
+/* ================= HELPER FUNCTIONS ================= */
+
+function setText(
+    elementId,
+    value
+) {
+
+    const element =
+        document.getElementById(
+            elementId
+        );
+
+
+    if (element) {
+
+        element.textContent =
+            value || "-";
+
+    }
+
+}
+
+
+function formatText(value) {
+
+    if (!value) {
+
+        return "-";
+
+    }
+
+
+    return String(value)
+        .replace(/\b\w/g, function (char) {
+
+            return char.toUpperCase();
+
+        });
+
+}
+
+
+function formatIndianCurrency(value) {
+
+    const number =
+        Number(value);
+
+
+    if (
+        !Number.isFinite(number) ||
+        number <= 0
+    ) {
+
+        return "₹0";
+
+    }
+
+
+    return "₹" +
+        number.toLocaleString(
+            "en-IN",
+            {
+                maximumFractionDigits: 0
+            }
+        );
+
+}
+
+</script>
+
+</body>
 </html>

@@ -4,7 +4,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
-from .routers import (
+from .app.routers import (
     auth,
     products,
     catalog,
@@ -104,7 +104,7 @@ def root():
 @app.get("/health")
 def health():
 
-    from .database import db
+    from .app.database import db
 
     return {
         "status": "ok",

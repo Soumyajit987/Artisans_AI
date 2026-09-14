@@ -1,6 +1,6 @@
 /* =====================================================
    KARUKRITI
-   FRONTEND + FASTAPI + MONGODB
+   FRONTEND + FASTAPI + MONGODB + PRICING AI
 ===================================================== */
 
 
@@ -70,53 +70,60 @@ async function apiFetch(
         ...(options.headers || {})
     };
 
-
-    const token =
-        getToken();
-
+    const token = getToken();
 
     if (token) {
 
-        headers[
-            "Authorization"
-        ] =
+        headers["Authorization"] =
             `Bearer ${token}`;
 
     }
 
+    try {
 
-    const response =
-        await fetch(
-            `${API_BASE}${endpoint}`,
-            {
-                ...options,
-                headers
-            }
-        );
+        const response =
+            await fetch(
+                `${API_BASE}${endpoint}`,
+                {
+                    ...options,
+                    headers
+                }
+            );
 
+        if (response.status === 401) {
 
-    if (
-        response.status === 401
-    ) {
+            logoutUser();
 
-        localStorage.removeItem(
-            TOKEN_KEY
-        );
+            throw new Error(
+                "Session expired. Please login again."
+            );
+        }
 
-        sessionStorage.removeItem(
-            CATALOG_KEY
-        );
+        return response;
 
-        window.location.href =
-            "login.html";
+    } catch (error) {
 
-        throw new Error(
-            "Session expired."
-        );
+        /*
+         * Browser "Failed to fetch" usually means:
+         * - backend is not running
+         * - wrong API URL
+         * - CORS problem
+         * - network connection problem
+         */
+
+        if (
+            error.name === "TypeError" &&
+            error.message === "Failed to fetch"
+        ) {
+
+            throw new Error(
+                "Cannot connect to the backend. Please make sure FastAPI is running at http://127.0.0.1:8000"
+            );
+
+        }
+
+        throw error;
     }
-
-
-    return response;
 }
 
 
@@ -177,10 +184,8 @@ function showAuthMessage(
         return;
     }
 
-
     element.textContent =
         message;
-
 
     element.className =
         `auth-message ${type}`;
@@ -388,9 +393,16 @@ async function signupUser() {
 
     } catch (error) {
 
+        console.error(
+            "Signup error:",
+            error
+        );
+
+
         showAuthMessage(
             message,
-            error.message,
+            error.message ||
+            "Registration failed.",
             "error"
         );
 
@@ -523,9 +535,16 @@ async function loginUser() {
 
     } catch (error) {
 
+        console.error(
+            "Login error:",
+            error
+        );
+
+
         showAuthMessage(
             message,
-            error.message,
+            error.message ||
+            "Login failed.",
             "error"
         );
 
@@ -549,7 +568,14 @@ async function getCurrentUser() {
         !response.ok
     ) {
 
+        let data = {};
+
+        try {
+            data = await response.json();
+        } catch (_) {}
+
         throw new Error(
+            data.detail ||
             "Unable to load user."
         );
 
@@ -794,7 +820,12 @@ function startVoiceInput() {
 
 
     recognition.onerror =
-        function () {
+        function (event) {
+
+            console.error(
+                "Voice input error:",
+                event
+            );
 
             alert(
                 "Voice input failed."
@@ -824,46 +855,428 @@ function startVoiceInput() {
 
 
 /* =====================================================
-   GENERATE CATALOG
+   GENERATE SMART CATALOG
+   + XGBOOST DYNAMIC PRICING
 ===================================================== */
+
 async function generateCatalog() {
 
-    const name = document.getElementById("productName").value.trim();
-    const category = document.getElementById("productCategory").value;
-    const price = document.getElementById("productPrice").value;
-    const language = document.getElementById("productLanguage").value;
-    const description = document.getElementById("description").value.trim();
+    console.log(
+        "Starting smart catalog generation..."
+    );
 
-    const imageInput = document.getElementById("productImage");
+
+    /* =================================================
+       BASIC PRODUCT INFORMATION
+    ================================================= */
+
+    const name =
+        document
+            .getElementById(
+                "productName"
+            )
+            ?.value
+            .trim();
+
+
+    const category =
+        document
+            .getElementById(
+                "productCategory"
+            )
+            ?.value;
+
+
+    /*
+     * Artisan's own expected price.
+     *
+     * This is OPTIONAL.
+     * The AI model calculates recommended_price.
+     */
+
+    const priceInput =
+        document
+            .getElementById(
+                "productPrice"
+            )
+            ?.value;
+
+
+    const price =
+        Number(
+            priceInput
+        );
+
+
+    const language =
+        document
+            .getElementById(
+                "productLanguage"
+            )
+            ?.value ||
+        "English";
+
+
+    const description =
+        document
+            .getElementById(
+                "description"
+            )
+            ?.value
+            .trim();
+
+
+    /* =================================================
+       XGBOOST INPUTS
+    ================================================= */
+
+    const laborHours =
+        Number(
+            document
+                .getElementById(
+                    "laborHours"
+                )
+                ?.value
+        );
+
+
+    const quantity =
+        Number(
+            document
+                .getElementById(
+                    "productQuantity"
+                )
+                ?.value
+        );
+
+
+    const length =
+        Number(
+            document
+                .getElementById(
+                    "productLength"
+                )
+                ?.value
+        );
+
+
+    const width =
+        Number(
+            document
+                .getElementById(
+                    "productWidth"
+                )
+                ?.value
+        );
+
+
+    const height =
+        Number(
+            document
+                .getElementById(
+                    "productHeight"
+                )
+                ?.value
+        );
+
+
+    const itemType =
+        document
+            .getElementById(
+                "itemType"
+            )
+            ?.value;
+
+
+    const materialType =
+        document
+            .getElementById(
+                "materialType"
+            )
+            ?.value;
+
+
+    const finishType =
+        document
+            .getElementById(
+                "finishType"
+            )
+            ?.value;
+
+
+    const urgencyLevel =
+        document
+            .getElementById(
+                "urgencyLevel"
+            )
+            ?.value;
+
+
+    /* =================================================
+       IMAGE
+    ================================================= */
+
+    const imageInput =
+        document.getElementById(
+            "productImage"
+        );
+
+
+    /* =================================================
+       VALIDATION
+    ================================================= */
 
     if (!name) {
-        alert("Please enter the product name.");
+
+        alert(
+            "Please enter the product name."
+        );
+
         return;
     }
+
 
     if (!category) {
-        alert("Please select a craft category.");
-        return;
-    }
 
-    if (!price || Number(price) <= 0) {
-        alert("Please enter a valid expected price.");
-        return;
-    }
+        alert(
+            "Please select a craft category."
+        );
 
-    if (!imageInput.files.length) {
-        alert("Please upload a product photo.");
         return;
     }
 
 
-    const formData = new FormData();
+    /*
+     * Expected price is optional.
+     */
 
-    formData.append("name", name);
-    formData.append("category", category);
-    formData.append("price", price);
-    formData.append("language", language);
-    formData.append("description", description);
+    const safePrice =
+        Number.isFinite(price) &&
+        price > 0
+            ? price
+            : 0;
+
+
+    if (
+        !Number.isFinite(laborHours) ||
+        laborHours <= 0
+    ) {
+
+        alert(
+            "Please enter valid labor hours."
+        );
+
+        return;
+    }
+
+
+    if (
+        !Number.isInteger(quantity) ||
+        quantity <= 0
+    ) {
+
+        alert(
+            "Please enter a valid quantity."
+        );
+
+        return;
+    }
+
+
+    if (
+        !Number.isFinite(length) ||
+        length <= 0
+    ) {
+
+        alert(
+            "Please enter a valid length."
+        );
+
+        return;
+    }
+
+
+    if (
+        !Number.isFinite(width) ||
+        width <= 0
+    ) {
+
+        alert(
+            "Please enter a valid width."
+        );
+
+        return;
+    }
+
+
+    if (
+        !Number.isFinite(height) ||
+        height <= 0
+    ) {
+
+        alert(
+            "Please enter a valid height."
+        );
+
+        return;
+    }
+
+
+    if (!itemType) {
+
+        alert(
+            "Please select the product type."
+        );
+
+        return;
+    }
+
+
+    if (!materialType) {
+
+        alert(
+            "Please select the material."
+        );
+
+        return;
+    }
+
+
+    if (!finishType) {
+
+        alert(
+            "Please select the finish."
+        );
+
+        return;
+    }
+
+
+    if (!urgencyLevel) {
+
+        alert(
+            "Please select the delivery urgency."
+        );
+
+        return;
+    }
+
+
+    if (
+        !imageInput ||
+        !imageInput.files ||
+        imageInput.files.length === 0
+    ) {
+
+        alert(
+            "Please upload a product photo."
+        );
+
+        return;
+    }
+
+
+    /* =================================================
+       CREATE FORM DATA
+    ================================================= */
+
+    const formData =
+        new FormData();
+
+
+    /* Basic fields */
+
+    formData.append(
+        "name",
+        name
+    );
+
+
+    formData.append(
+        "category",
+        category
+    );
+
+
+    formData.append(
+        "description",
+        description || ""
+    );
+
+
+    formData.append(
+        "language",
+        language
+    );
+
+
+    formData.append(
+        "price",
+        safePrice
+    );
+
+
+    /* =================================================
+       XGBOOST FIELDS
+    ================================================= */
+
+    formData.append(
+        "labor_hours",
+        laborHours
+    );
+
+
+    formData.append(
+        "quantity",
+        quantity
+    );
+
+
+    formData.append(
+        "length",
+        length
+    );
+
+
+    formData.append(
+        "width",
+        width
+    );
+
+
+    formData.append(
+        "height",
+        height
+    );
+
+
+    formData.append(
+        "item_type",
+        itemType
+    );
+
+
+    formData.append(
+        "material_type",
+        materialType
+    );
+
+
+    formData.append(
+        "finish_type",
+        finishType
+    );
+
+
+    formData.append(
+        "urgency_level",
+        urgencyLevel
+    );
+
+
+    /* =================================================
+       IMAGE
+    ================================================= */
 
     formData.append(
         "image",
@@ -871,43 +1284,188 @@ async function generateCatalog() {
     );
 
 
-    const button = document.querySelector(
-        ".generate-button"
-    );
+    /* =================================================
+       BUTTON
+    ================================================= */
 
-    button.disabled = true;
-    button.textContent = "Enhancing Image...";
+    const button =
+        document.querySelector(
+            ".generate-button"
+        );
 
+
+    const originalButtonText =
+        button
+            ? button.textContent
+            : "Generate Smart Catalog →";
+
+
+    if (button) {
+
+        button.disabled =
+            true;
+
+        button.textContent =
+            "Generating Smart Catalog...";
+
+    }
+
+
+    /* =================================================
+       SEND REQUEST TO FASTAPI
+    ================================================= */
 
     try {
 
-        const response = await apiFetch(
-            "/api/catalog/generate",
-            {
-                method: "POST",
-                body: formData
-            }
+        console.log(
+            "Sending catalog request to:",
+            `${API_BASE}/api/catalog/generate`
         );
 
 
-        if (!response.ok) {
+        const response =
+            await apiFetch(
+                "/api/catalog/generate",
+                {
 
-            const error = await response.json();
+                    method:
+                        "POST",
+
+                    /*
+                     * IMPORTANT:
+                     * Do NOT set Content-Type here.
+                     *
+                     * Browser automatically creates:
+                     * multipart/form-data boundary.
+                     */
+
+                    body:
+                        formData
+
+                }
+            );
+
+
+        console.log(
+            "Catalog response status:",
+            response.status
+        );
+
+
+        let data;
+
+
+        try {
+
+            data =
+                await response.json();
+
+        } catch (jsonError) {
 
             throw new Error(
-                error.detail || "Catalog generation failed."
+                `Backend returned an invalid response. HTTP ${response.status}`
             );
+
         }
 
 
-        const catalog = await response.json();
-
-
-        sessionStorage.setItem(
-            "karukritiCatalog",
-            JSON.stringify(catalog)
+        console.log(
+            "Catalog response data:",
+            data
         );
 
+
+        /* =================================================
+           BACKEND ERROR
+        ================================================= */
+
+        if (
+            !response.ok
+        ) {
+
+            let errorMessage =
+                "Catalog generation failed.";
+
+
+            if (
+                data &&
+                data.detail
+            ) {
+
+                if (
+                    Array.isArray(
+                        data.detail
+                    )
+                ) {
+
+                    errorMessage =
+                        data.detail
+                            .map(
+                                function (item) {
+
+                                    return (
+                                        item.msg ||
+                                        JSON.stringify(
+                                            item
+                                        )
+                                    );
+
+                                }
+                            )
+                            .join("\n");
+
+                } else {
+
+                    errorMessage =
+                        String(
+                            data.detail
+                        );
+
+                }
+
+            }
+
+
+            throw new Error(
+                `Server error (${response.status}): ${errorMessage}`
+            );
+
+        }
+
+
+        /* =================================================
+           CHECK RESULT
+        ================================================= */
+
+        if (
+            !data
+        ) {
+
+            throw new Error(
+                "Backend returned empty catalog data."
+            );
+
+        }
+
+
+        /* =================================================
+           SAVE CATALOG RESULT
+        ================================================= */
+
+        sessionStorage.setItem(
+            CATALOG_KEY,
+            JSON.stringify(data)
+        );
+
+
+        console.log(
+            "Catalog saved successfully."
+        );
+
+
+        /* =================================================
+           GO TO RESULT PAGE
+        ================================================= */
 
         window.location.href =
             "catalog-result.html";
@@ -915,18 +1473,30 @@ async function generateCatalog() {
 
     } catch (error) {
 
-        console.error(error);
-
-        alert(
-            "Unable to generate catalog: " +
-            error.message
+        console.error(
+            "SMART CATALOG ERROR:",
+            error
         );
 
-        button.disabled = false;
 
-        button.textContent =
-            "Generate Smart Catalog →";
+        alert(
+            error.message ||
+            "Something went wrong while generating the catalog."
+        );
+
+
+        if (button) {
+
+            button.disabled =
+                false;
+
+            button.textContent =
+                originalButtonText;
+
+        }
+
     }
+
 }
 
 
@@ -943,113 +1513,532 @@ function loadCatalogResult() {
 
 
     if (!raw) {
+
+        console.warn(
+            "No catalog data found in sessionStorage."
+        );
+
         return;
     }
 
 
-    const catalog =
-        JSON.parse(raw);
+    try {
+
+        const catalog =
+            JSON.parse(
+                raw
+            );
 
 
-    const resultName =
-        document.getElementById(
-            "resultName"
+        /* =================================================
+           BASIC INFORMATION
+        ================================================= */
+
+        const resultName =
+            document.getElementById(
+                "resultName"
+            );
+
+
+        const resultCategory =
+            document.getElementById(
+                "resultCategory"
+            );
+
+
+        const resultDescription =
+            document.getElementById(
+                "resultDescription"
+            );
+
+
+        if (resultName) {
+
+            resultName.textContent =
+                catalog.name || "-";
+
+        }
+
+
+        if (resultCategory) {
+
+            resultCategory.textContent =
+                catalog.category || "-";
+
+        }
+
+
+        if (resultDescription) {
+
+            resultDescription.textContent =
+                catalog.description || "-";
+
+        }
+
+
+        /* =================================================
+           IMAGE
+        ================================================= */
+
+        const resultImage =
+            document.getElementById(
+                "resultImage"
+            );
+
+
+        const imagePlaceholder =
+            document.getElementById(
+                "resultImagePlaceholder"
+            );
+
+
+        if (
+            resultImage &&
+            catalog.image_url
+        ) {
+
+            let imageURL =
+                catalog.image_url;
+
+
+            if (
+                imageURL.startsWith(
+                    "http://"
+                ) ||
+                imageURL.startsWith(
+                    "https://"
+                )
+            ) {
+
+                resultImage.src =
+                    imageURL;
+
+            } else {
+
+                resultImage.src =
+                    `${API_BASE}${imageURL}`;
+
+            }
+
+
+            resultImage.style.display =
+                "block";
+
+
+            if (imagePlaceholder) {
+
+                imagePlaceholder.style.display =
+                    "none";
+
+            }
+
+        }
+
+
+        /* =================================================
+           AI RECOMMENDED PRICE
+        ================================================= */
+
+        const recommendedPrice =
+            document.getElementById(
+                "recommendedPrice"
+            );
+
+
+        if (recommendedPrice) {
+
+            const aiPrice =
+                Number(
+                    catalog.recommended_price
+                );
+
+
+            if (
+                Number.isFinite(
+                    aiPrice
+                ) &&
+                aiPrice > 0
+            ) {
+
+                recommendedPrice.textContent =
+                    `₹${aiPrice.toLocaleString(
+                        "en-IN",
+                        {
+                            maximumFractionDigits: 0
+                        }
+                    )}`;
+
+            } else {
+
+                recommendedPrice.textContent =
+                    "Price unavailable";
+
+            }
+
+        }
+
+
+        /* =================================================
+           MARKET MINIMUM
+        ================================================= */
+
+        const marketMin =
+            document.getElementById(
+                "marketMin"
+            );
+
+
+        if (marketMin) {
+
+            const min =
+                Number(
+                    catalog.market_min
+                );
+
+
+            if (
+                Number.isFinite(min)
+            ) {
+
+                marketMin.textContent =
+                    `₹${min.toLocaleString(
+                        "en-IN",
+                        {
+                            maximumFractionDigits: 0
+                        }
+                    )}`;
+
+            } else {
+
+                marketMin.textContent =
+                    "₹0";
+
+            }
+
+        }
+
+
+        /* =================================================
+           MARKET MAXIMUM
+        ================================================= */
+
+        const marketMax =
+            document.getElementById(
+                "marketMax"
+            );
+
+
+        if (marketMax) {
+
+            const max =
+                Number(
+                    catalog.market_max
+                );
+
+
+            if (
+                Number.isFinite(max)
+            ) {
+
+                marketMax.textContent =
+                    `₹${max.toLocaleString(
+                        "en-IN",
+                        {
+                            maximumFractionDigits: 0
+                        }
+                    )}`;
+
+            } else {
+
+                marketMax.textContent =
+                    "₹0";
+
+            }
+
+        }
+
+
+        /* =================================================
+           PRICING INPUTS
+        ================================================= */
+
+        const pricingInputs =
+            catalog.pricing_inputs ||
+            {};
+
+
+        const resultItemType =
+            document.getElementById(
+                "resultItemType"
+            );
+
+
+        const resultMaterialType =
+            document.getElementById(
+                "resultMaterialType"
+            );
+
+
+        const resultLaborHours =
+            document.getElementById(
+                "resultLaborHours"
+            );
+
+
+        const resultQuantity =
+            document.getElementById(
+                "resultQuantity"
+            );
+
+
+        const resultDimensions =
+            document.getElementById(
+                "resultDimensions"
+            );
+
+
+        const resultFinishType =
+            document.getElementById(
+                "resultFinishType"
+            );
+
+
+        const resultUrgencyLevel =
+            document.getElementById(
+                "resultUrgencyLevel"
+            );
+
+
+        if (resultItemType) {
+
+            resultItemType.textContent =
+                formatDisplayText(
+                    pricingInputs.item_type
+                );
+
+        }
+
+
+        if (resultMaterialType) {
+
+            resultMaterialType.textContent =
+                formatDisplayText(
+                    pricingInputs.material_type
+                );
+
+        }
+
+
+        if (resultLaborHours) {
+
+            const hours =
+                Number(
+                    pricingInputs.labor_hours
+                );
+
+
+            resultLaborHours.textContent =
+                Number.isFinite(hours)
+                    ? `${hours} hrs`
+                    : "-";
+
+        }
+
+
+        if (resultQuantity) {
+
+            resultQuantity.textContent =
+                pricingInputs.quantity ||
+                "-";
+
+        }
+
+
+        if (resultDimensions) {
+
+            if (
+                pricingInputs.length &&
+                pricingInputs.width &&
+                pricingInputs.height
+            ) {
+
+                resultDimensions.textContent =
+                    `${pricingInputs.length} × ${pricingInputs.width} × ${pricingInputs.height} cm`;
+
+            } else {
+
+                resultDimensions.textContent =
+                    "-";
+
+            }
+
+        }
+
+
+        if (resultFinishType) {
+
+            resultFinishType.textContent =
+                formatDisplayText(
+                    pricingInputs.finish_type
+                );
+
+        }
+
+
+        if (resultUrgencyLevel) {
+
+            resultUrgencyLevel.textContent =
+                formatDisplayText(
+                    pricingInputs.urgency_level
+                );
+
+        }
+
+
+        /* =================================================
+           EXPECTED PRICE
+        ================================================= */
+
+        const expectedPriceCard =
+            document.getElementById(
+                "expectedPriceCard"
+            );
+
+
+        const resultExpectedPrice =
+            document.getElementById(
+                "resultExpectedPrice"
+            );
+
+
+        const priceComparisonMessage =
+            document.getElementById(
+                "priceComparisonMessage"
+            );
+
+
+        const expectedPrice =
+            Number(
+                catalog.price
+            );
+
+
+        const aiPrice =
+            Number(
+                catalog.recommended_price
+            );
+
+
+        if (
+            Number.isFinite(
+                expectedPrice
+            ) &&
+            expectedPrice > 0
+        ) {
+
+            if (expectedPriceCard) {
+
+                expectedPriceCard.style.display =
+                    "block";
+
+            }
+
+
+            if (resultExpectedPrice) {
+
+                resultExpectedPrice.textContent =
+                    `₹${expectedPrice.toLocaleString(
+                        "en-IN",
+                        {
+                            maximumFractionDigits: 0
+                        }
+                    )}`;
+
+            }
+
+
+            if (priceComparisonMessage) {
+
+                if (
+                    Number.isFinite(aiPrice)
+                ) {
+
+                    if (
+                        expectedPrice <
+                        aiPrice
+                    ) {
+
+                        priceComparisonMessage.textContent =
+                            "Your expected price is below the AI recommendation.";
+
+                    } else if (
+                        expectedPrice >
+                        aiPrice
+                    ) {
+
+                        priceComparisonMessage.textContent =
+                            "Your expected price is above the AI recommendation.";
+
+                    } else {
+
+                        priceComparisonMessage.textContent =
+                            "Your expected price matches the AI recommendation.";
+
+                    }
+
+                }
+
+            }
+
+        } else {
+
+            if (expectedPriceCard) {
+
+                expectedPriceCard.style.display =
+                    "none";
+
+            }
+
+        }
+
+
+    } catch (error) {
+
+        console.error(
+            "Error loading catalog result:",
+            error
         );
 
+    }
 
-    const resultCategory =
-        document.getElementById(
-            "resultCategory"
-        );
+}
 
 
-    const resultDescription =
-        document.getElementById(
-            "resultDescription"
-        );
+/* =====================================================
+   FORMAT DISPLAY TEXT
+===================================================== */
 
+function formatDisplayText(
+    value
+) {
 
-    const resultImage =
-        document.getElementById(
-            "resultImage"
-        );
+    if (!value) {
 
-
-    const recommendedPrice =
-        document.getElementById(
-            "recommendedPrice"
-        );
-
-
-    const marketMin =
-        document.getElementById(
-            "marketMin"
-        );
-
-
-    const marketMax =
-        document.getElementById(
-            "marketMax"
-        );
-
-
-    if (resultName) {
-
-        resultName.textContent =
-            catalog.name;
+        return "-";
 
     }
 
 
-    if (resultCategory) {
+    return String(value)
+        .replace(
+            /\b\w/g,
+            function (char) {
 
-        resultCategory.textContent =
-            catalog.category;
+                return char.toUpperCase();
 
-    }
+            }
+        );
 
-
-    if (resultDescription) {
-
-        resultDescription.textContent =
-            catalog.description;
-
-    }
-
-
-    if (recommendedPrice) {
-
-        recommendedPrice.textContent =
-            `₹${catalog.recommended_price}`;
-
-    }
-
-
-    if (marketMin) {
-
-        marketMin.textContent =
-            catalog.market_min;
-
-    }
-
-
-    if (marketMax) {
-
-        marketMax.textContent =
-            catalog.market_max;
-
-    }
-
-
-    if (
-        resultImage &&
-        catalog.image_url
-    ) {
-
-        resultImage.src =
-            `${API_BASE}${catalog.image_url}`;
-
-    }
 }
 
 
@@ -1068,7 +2057,7 @@ async function publishProduct() {
     if (!raw) {
 
         alert(
-            "Catalog data not found."
+            "Catalog data not found. Please generate the catalog again."
         );
 
         goTo(
@@ -1079,11 +2068,228 @@ async function publishProduct() {
     }
 
 
-    const catalog =
-        JSON.parse(raw);
+    let catalog;
 
 
     try {
+
+        catalog =
+            JSON.parse(
+                raw
+            );
+
+    } catch (error) {
+
+        alert(
+            "Invalid catalog data."
+        );
+
+        return;
+    }
+
+
+    /* =================================================
+       AI PRICE
+    ================================================= */
+
+    const recommendedPrice =
+        Number(
+            catalog.recommended_price
+        );
+
+
+    if (
+        !Number.isFinite(
+            recommendedPrice
+        ) ||
+        recommendedPrice <= 0
+    ) {
+
+        alert(
+            "AI recommended price is not available."
+        );
+
+        return;
+    }
+
+
+    /* =================================================
+       PRICING INPUTS
+    ================================================= */
+
+    const pricingInputs =
+        catalog.pricing_inputs ||
+        {};
+
+
+    const productData = {
+
+        name:
+            catalog.name,
+
+        category:
+            catalog.category,
+
+        description:
+            catalog.description ||
+            "",
+
+        /*
+         * Published price is the
+         * AI recommended price.
+         */
+
+        price:
+            recommendedPrice,
+
+        recommended_price:
+            recommendedPrice,
+
+        market_min:
+            Number(
+                catalog.market_min
+            ),
+
+        market_max:
+            Number(
+                catalog.market_max
+            ),
+
+        language:
+            catalog.language ||
+            "English",
+
+        image_url:
+            catalog.image_url,
+
+
+        /* XGBoost inputs */
+
+        labor_hours:
+            Number(
+                pricingInputs.labor_hours
+            ),
+
+        quantity:
+            Number(
+                pricingInputs.quantity
+            ),
+
+        length:
+            Number(
+                pricingInputs.length
+            ),
+
+        width:
+            Number(
+                pricingInputs.width
+            ),
+
+        height:
+            Number(
+                pricingInputs.height
+            ),
+
+        item_type:
+            pricingInputs.item_type,
+
+        material_type:
+            pricingInputs.material_type,
+
+        finish_type:
+            pricingInputs.finish_type,
+
+        urgency_level:
+            pricingInputs.urgency_level
+
+    };
+
+
+    /* =================================================
+       VALIDATE BEFORE PUBLISH
+    ================================================= */
+
+    if (
+        !productData.name ||
+        !productData.category
+    ) {
+
+        alert(
+            "Product information is incomplete."
+        );
+
+        return;
+    }
+
+
+    if (
+        !Number.isFinite(
+            productData.labor_hours
+        ) ||
+        productData.labor_hours <= 0
+    ) {
+
+        alert(
+            "Labor hours are missing."
+        );
+
+        return;
+    }
+
+
+    if (
+        !Number.isFinite(
+            productData.quantity
+        ) ||
+        productData.quantity <= 0
+    ) {
+
+        alert(
+            "Quantity is missing."
+        );
+
+        return;
+    }
+
+
+    /* =================================================
+       PUBLISH BUTTON
+    ================================================= */
+
+    const button =
+        document.querySelector(
+            ".publish-button"
+        );
+
+
+    const originalText =
+        button
+            ? button.textContent
+            : "Publish Product →";
+
+
+    if (button) {
+
+        button.disabled =
+            true;
+
+        button.textContent =
+            "Publishing...";
+
+    }
+
+
+    /* =================================================
+       SEND TO FASTAPI
+    ================================================= */
+
+    try {
+
+        console.log(
+            "Publishing product:",
+            productData
+        );
+
 
         const response =
             await apiFetch(
@@ -1101,28 +2307,9 @@ async function publishProduct() {
                     },
 
                     body:
-                        JSON.stringify({
-
-                            name:
-                                catalog.name,
-
-                            category:
-                                catalog.category,
-
-                            description:
-                                catalog.description,
-
-                            price:
-                                catalog.price,
-
-                            language:
-                                catalog.language ||
-                                "English",
-
-                            image_url:
-                                catalog.image_url
-
-                        })
+                        JSON.stringify(
+                            productData
+                        )
 
                 }
             );
@@ -1132,17 +2319,69 @@ async function publishProduct() {
             await response.json();
 
 
+        console.log(
+            "Publish response:",
+            data
+        );
+
+
         if (
             !response.ok
         ) {
 
+            let message =
+                "Publishing failed.";
+
+
+            if (
+                data &&
+                data.detail
+            ) {
+
+                if (
+                    Array.isArray(
+                        data.detail
+                    )
+                ) {
+
+                    message =
+                        data.detail
+                            .map(
+                                function (item) {
+
+                                    return (
+                                        item.msg ||
+                                        JSON.stringify(
+                                            item
+                                        )
+                                    );
+
+                                }
+                            )
+                            .join("\n");
+
+                } else {
+
+                    message =
+                        String(
+                            data.detail
+                        );
+
+                }
+
+            }
+
+
             throw new Error(
-                data.detail ||
-                "Publishing failed."
+                `Server error (${response.status}): ${message}`
             );
 
         }
 
+
+        /* =================================================
+           CLEAR TEMPORARY DATA
+        ================================================= */
 
         sessionStorage.removeItem(
             CATALOG_KEY
@@ -1161,11 +2400,30 @@ async function publishProduct() {
 
     } catch (error) {
 
-        alert(
-            error.message
+        console.error(
+            "Publish error:",
+            error
         );
 
+
+        alert(
+            error.message ||
+            "Unable to publish product."
+        );
+
+
+        if (button) {
+
+            button.disabled =
+                false;
+
+            button.textContent =
+                originalText;
+
+        }
+
     }
+
 }
 
 
@@ -1185,7 +2443,15 @@ async function getProducts() {
         !response.ok
     ) {
 
+        let data = {};
+
+        try {
+            data = await response.json();
+        } catch (_) {}
+
+
         throw new Error(
+            data.detail ||
             "Unable to load products."
         );
 
@@ -1243,7 +2509,8 @@ async function renderProducts() {
             products.length === 0
         ) {
 
-            list.innerHTML = "";
+            list.innerHTML =
+                "";
 
 
             if (empty) {
@@ -1267,102 +2534,139 @@ async function renderProducts() {
 
 
         list.innerHTML =
-            products.map(
-                function (product) {
+            products
+                .map(
+                    function (product) {
 
-                    const name =
-                        escapeHTML(
-                            product.name
-                        );
-
-
-                    const category =
-                        escapeHTML(
-                            product.category
-                        );
+                        const name =
+                            escapeHTML(
+                                product.name
+                            );
 
 
-                    const status =
-                        escapeHTML(
-                            product.status
-                        );
+                        const category =
+                            escapeHTML(
+                                product.category
+                            );
 
 
-                    let imageHTML =
-                        `<span>🧺</span>`;
+                        const status =
+                            escapeHTML(
+                                product.status ||
+                                "Published"
+                            );
 
 
-                    if (
-                        product.image_url
-                    ) {
+                        let imageHTML =
+                            `<span>🧺</span>`;
 
-                        imageHTML = `
 
-                            <img
-                                src="${API_BASE}${product.image_url}"
-                                alt="${name}"
+                        if (
+                            product.image_url
+                        ) {
+
+                            imageHTML = `
+
+                                <img
+                                    src="${API_BASE}${product.image_url}"
+                                    alt="${name}"
+                                >
+
+                            `;
+
+                        }
+
+
+                        const aiPrice =
+                            Number(
+                                product.recommended_price
+                            );
+
+
+                        const regularPrice =
+                            Number(
+                                product.price
+                            );
+
+
+                        const finalPrice =
+                            Number.isFinite(
+                                aiPrice
+                            ) &&
+                            aiPrice > 0
+                                ? aiPrice
+                                : regularPrice;
+
+
+                        const displayPrice =
+                            Number.isFinite(
+                                finalPrice
+                            )
+                                ? finalPrice.toLocaleString(
+                                    "en-IN"
+                                )
+                                : "—";
+
+
+                        return `
+
+                            <article
+                                class="product-card"
                             >
+
+                                <div
+                                    class="product-image"
+                                >
+
+                                    ${imageHTML}
+
+                                </div>
+
+
+                                <div
+                                    class="product-card-body"
+                                >
+
+                                    <div
+                                        class="product-category"
+                                    >
+                                        ${category}
+                                    </div>
+
+
+                                    <h3>
+                                        ${name}
+                                    </h3>
+
+
+                                    <div
+                                        class="product-price"
+                                    >
+                                        ₹${displayPrice}
+                                    </div>
+
+
+                                    <div
+                                        class="product-status"
+                                    >
+                                        ✓ ${status}
+                                    </div>
+
+                                </div>
+
+                            </article>
 
                         `;
 
                     }
-
-
-                    return `
-
-                        <article
-                            class="product-card"
-                        >
-
-                            <div
-                                class="product-image"
-                            >
-                                ${imageHTML}
-                            </div>
-
-
-                            <div
-                                class="product-card-body"
-                            >
-
-                                <div
-                                    class="product-category"
-                                >
-                                    ${category}
-                                </div>
-
-
-                                <h3>
-                                    ${name}
-                                </h3>
-
-
-                                <div
-                                    class="product-price"
-                                >
-                                    ₹${product.recommended_price}
-                                </div>
-
-
-                                <div
-                                    class="product-status"
-                                >
-                                    ✓ ${status}
-                                </div>
-
-                            </div>
-
-                        </article>
-
-                    `;
-
-                }
-            ).join("");
+                )
+                .join("");
 
 
     } catch (error) {
 
         console.error(
+            "Products loading error:",
             error
         );
 
@@ -1380,7 +2684,10 @@ async function renderProducts() {
                 </h3>
 
                 <p>
-                    Please make sure the backend is running.
+                    ${escapeHTML(
+                        error.message ||
+                        "Please make sure the backend is running."
+                    )}
                 </p>
 
             </div>
@@ -1479,6 +2786,37 @@ async function renderHomeProducts() {
                                 : "🧺";
 
 
+                        const aiPrice =
+                            Number(
+                                product.recommended_price
+                            );
+
+
+                        const regularPrice =
+                            Number(
+                                product.price
+                            );
+
+
+                        const finalPrice =
+                            Number.isFinite(
+                                aiPrice
+                            ) &&
+                            aiPrice > 0
+                                ? aiPrice
+                                : regularPrice;
+
+
+                        const displayPrice =
+                            Number.isFinite(
+                                finalPrice
+                            )
+                                ? finalPrice.toLocaleString(
+                                    "en-IN"
+                                )
+                                : "—";
+
+
                         return `
 
                             <div
@@ -1507,7 +2845,7 @@ async function renderHomeProducts() {
 
 
                                     <b>
-                                        ₹${product.recommended_price}
+                                        ₹${displayPrice}
                                     </b>
 
                                 </div>
@@ -1524,6 +2862,7 @@ async function renderHomeProducts() {
     } catch (error) {
 
         console.error(
+            "Home products error:",
             error
         );
 
@@ -1630,8 +2969,6 @@ async function loadProfile() {
         }
 
 
-        /* PRODUCTS PAGE SELLER */
-
         const sellerName =
             document.getElementById(
                 "sellerName"
@@ -1677,6 +3014,7 @@ async function loadProfile() {
     } catch (error) {
 
         console.error(
+            "Profile error:",
             error
         );
 
@@ -1752,87 +3090,90 @@ async function loadOrders() {
 
 
         orderList.innerHTML =
-            orders.map(
-                function (order) {
+            orders
+                .map(
+                    function (order) {
 
-                    const orderNumber =
-                        escapeHTML(
-                            order.order_number
-                        );
-
-
-                    const productName =
-                        escapeHTML(
-                            order.product_name
-                        );
+                        const orderNumber =
+                            escapeHTML(
+                                order.order_number
+                            );
 
 
-                    const status =
-                        escapeHTML(
-                            order.status
-                        );
+                        const productName =
+                            escapeHTML(
+                                order.product_name
+                            );
 
 
-                    return `
+                        const status =
+                            escapeHTML(
+                                order.status
+                            );
 
-                        <div
-                            class="order-card"
-                        >
+
+                        return `
 
                             <div
-                                class="order-icon"
-                            >
-                                📦
-                            </div>
-
-
-                            <div
-                                class="order-info"
+                                class="order-card"
                             >
 
-                                <strong>
-                                    ${orderNumber}
-                                </strong>
+                                <div
+                                    class="order-icon"
+                                >
+                                    📦
+                                </div>
 
 
-                                <h3>
-                                    ${productName}
-                                </h3>
+                                <div
+                                    class="order-info"
+                                >
+
+                                    <strong>
+                                        ${orderNumber}
+                                    </strong>
 
 
-                                <span>
-                                    Customer Order
-                                </span>
+                                    <h3>
+                                        ${productName}
+                                    </h3>
+
+
+                                    <span>
+                                        Customer Order
+                                    </span>
+
+                                </div>
+
+
+                                <div
+                                    class="order-right"
+                                >
+
+                                    <strong>
+                                        ₹${order.amount}
+                                    </strong>
+
+
+                                    <small>
+                                        ${status}
+                                    </small>
+
+                                </div>
 
                             </div>
 
+                        `;
 
-                            <div
-                                class="order-right"
-                            >
-
-                                <strong>
-                                    ₹${order.amount}
-                                </strong>
-
-
-                                <small>
-                                    ${status}
-                                </small>
-
-                            </div>
-
-                        </div>
-
-                    `;
-
-                }
-            ).join("");
+                    }
+                )
+                .join("");
 
 
     } catch (error) {
 
         console.error(
+            "Orders error:",
             error
         );
 
@@ -1928,6 +3269,7 @@ async function loadOrderStats() {
     } catch (error) {
 
         console.error(
+            "Order statistics error:",
             error
         );
 
@@ -1975,6 +3317,7 @@ function togglePassword(
             "Show";
 
     }
+
 }
 
 
@@ -2019,6 +3362,7 @@ function showOtherComingSoon() {
             "none";
 
     }
+
 }
 
 
@@ -2035,6 +3379,11 @@ document.addEventListener(
         redirectLoggedInUser();
 
         setupImagePreview();
+
+        /*
+         * These functions safely do nothing
+         * when their page elements don't exist.
+         */
 
         loadCatalogResult();
 

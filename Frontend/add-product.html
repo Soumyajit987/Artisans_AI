@@ -10,148 +10,120 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>KaruKriti - Add Product</title>
+    <title>Add Product - Karukriti</title>
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
 
 </head>
 
 
 <body>
 
+
 <div class="app-shell">
 
 
-    <!-- =========================
-         HEADER
-    ========================== -->
+    <!-- ================= HEADER ================= -->
 
     <header class="top-header">
 
-        <div>
-
-            <div class="brand-small">
-                KARUKRITI
-            </div>
-
-            <div class="brand-tagline">
-                CRAFT • CULTURE • CONNECTION
-            </div>
-
-        </div>
-
-
         <button
             class="header-icon"
-            type="button"
             onclick="goTo('index.html')"
-            aria-label="Go Home"
         >
-            ×
+            ←
         </button>
+
+        <div class="brand-small">
+            KARUKRITI
+        </div>
+
+        <div class="header-icon">
+            ✦
+        </div>
 
     </header>
 
 
 
-    <!-- =========================
-         ADD PRODUCT MAIN
-    ========================== -->
+    <!-- ================= MAIN ================= -->
 
     <main class="add-product-main">
 
 
-        <!-- STEP -->
-
         <div class="step-label">
-            STEP 01
+            STEP 01 OF 02
         </div>
 
 
-        <!-- TITLE -->
-
         <h1 class="add-title">
-
-            Create your<br>
-            smart catalog.
-
+            Tell us about<br>
+            your craft.
         </h1>
 
 
-        <!-- SUBTITLE -->
-
         <p class="add-subtitle">
-
-            Add your product details and let
-            Karukriti prepare your catalog.
-
+            Add a photo and a few details.
+            Our AI will create a professional
+            product catalog and suggest a fair price.
         </p>
 
 
 
-        <!-- =========================
-             IMAGE UPLOAD
-        ========================== -->
+        <!-- ================= PHOTO ================= -->
 
         <div class="upload-card">
+
+            <div
+                id="imagePreview"
+                class="image-preview"
+            >
+
+                <label for="productImage">
+
+                    <div class="upload-icon">
+                        📷
+                    </div>
+
+                    <strong>
+                        Add product photo
+                    </strong>
+
+                    <p>
+                        Take a photo or choose
+                        from gallery
+                    </p>
+
+                    <span class="upload-button">
+                        + Add Photo
+                    </span>
+
+                </label>
+
+            </div>
 
 
             <input
                 type="file"
                 id="productImage"
                 accept="image/*"
+                capture="environment"
             >
-
-
-            <label for="productImage">
-
-
-                <div class="upload-icon">
-                    📷
-                </div>
-
-
-                <strong>
-                    Add product photo
-                </strong>
-
-
-                <p>
-                    Upload a clear photo of your craft.
-                </p>
-
-
-                <span class="upload-button">
-                    Choose Photo
-                </span>
-
-
-            </label>
 
         </div>
 
 
 
-        <!-- IMAGE PREVIEW -->
-
-        <div
-            id="imagePreview"
-            class="image-preview"
-        ></div>
-
-
-
-        <!-- =========================
-             PRODUCT NAME
-        ========================== -->
+        <!-- ================= PRODUCT NAME ================= -->
 
         <div class="form-group">
 
             <label for="productName">
-                Product Name
+                PRODUCT NAME
             </label>
-
 
             <input
                 type="text"
@@ -163,18 +135,18 @@
 
 
 
-        <!-- =========================
-             CATEGORY
-        ========================== -->
+        <!-- ================= CATEGORY ================= -->
 
         <div class="form-group">
 
             <label for="productCategory">
-                Craft Category
+                CATEGORY
             </label>
 
-
-            <select id="productCategory">
+            <select
+                id="productCategory"
+                onchange="showOtherComingSoon()"
+            >
 
                 <option value="">
                     Select category
@@ -210,30 +182,32 @@
 
 
 
-        <!-- =========================
-             PRICE
-        ========================== -->
+        <!-- ================= OTHER COMING SOON ================= -->
 
-        <div class="form-group">
+        <div
+            id="otherComingSoon"
+            class="coming-soon-card"
+            style="display: none;"
+        >
 
-            <label for="productPrice">
-                Expected Price
-            </label>
+            <div class="coming-soon-icon">
+                ✦
+            </div>
 
+            <div class="coming-soon-content">
 
-            <div class="price-input">
+                <div class="coming-soon-badge">
+                    COMING SOON
+                </div>
 
-                <span>
-                    ₹
-                </span>
+                <h3>
+                    More crafts are coming soon
+                </h3>
 
-
-                <input
-                    type="number"
-                    id="productPrice"
-                    placeholder="Enter expected price"
-                    min="1"
-                >
+                <p>
+                    We're working on adding more
+                    artisan categories to Karukriti.
+                </p>
 
             </div>
 
@@ -241,18 +215,383 @@
 
 
 
-        <!-- =========================
-             LANGUAGE
-        ========================== -->
+        <!-- =====================================================
+             PRICING AI INFORMATION
+        ====================================================== -->
+
+        <div class="ai-info-box">
+
+            <div>
+
+                <strong>
+                    Smart Price Prediction
+                </strong>
+
+                <p>
+                    Tell us about the work and materials.
+                    Our AI will estimate a suitable product price.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ================= PRODUCT TYPE ================= -->
+
+        <div class="form-group">
+
+            <label for="itemType">
+                PRODUCT TYPE
+            </label>
+
+            <select
+                id="itemType"
+                required
+            >
+
+                <option value="">
+                    Select product type
+                </option>
+
+                <option value="brass showpiece">
+                    Brass Showpiece
+                </option>
+
+                <option value="cane stool">
+                    Cane Stool
+                </option>
+
+                <option value="executive office chair">
+                    Executive Office Chair
+                </option>
+
+                <option value="glass coffee table">
+                    Glass Coffee Table
+                </option>
+
+                <option value="iron table">
+                    Iron Table
+                </option>
+
+                <option value="lounge sofa">
+                    Lounge Sofa
+                </option>
+
+                <option value="modular tv unit">
+                    Modular TV Unit
+                </option>
+
+                <option value="steel bookshelf">
+                    Steel Bookshelf
+                </option>
+
+                <option value="study desk">
+                    Study Desk
+                </option>
+
+                <option value="teak rocking chair">
+                    Teak Rocking Chair
+                </option>
+
+                <option value="wooden chair">
+                    Wooden Chair
+                </option>
+
+                <option value="wooden dining table">
+                    Wooden Dining Table
+                </option>
+
+                <option value="wooden partition">
+                    Wooden Partition
+                </option>
+
+                <option value="wooden wardrobe">
+                    Wooden Wardrobe
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <!-- ================= MATERIAL ================= -->
+
+        <div class="form-group">
+
+            <label for="materialType">
+                MATERIAL
+            </label>
+
+            <select
+                id="materialType"
+                required
+            >
+
+                <option value="">
+                    Select material
+                </option>
+
+                <option value="brass">
+                    Brass
+                </option>
+
+                <option value="cane">
+                    Cane
+                </option>
+
+                <option value="engineered wood">
+                    Engineered Wood
+                </option>
+
+                <option value="glass">
+                    Glass
+                </option>
+
+                <option value="iron">
+                    Iron
+                </option>
+
+                <option value="particle board">
+                    Particle Board
+                </option>
+
+                <option value="sheesham wood">
+                    Sheesham Wood
+                </option>
+
+                <option value="steel">
+                    Steel
+                </option>
+
+                <option value="teak wood">
+                    Teak Wood
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <!-- ================= LABOR HOURS ================= -->
+
+        <div class="form-group">
+
+            <label for="laborHours">
+                LABOR HOURS
+            </label>
+
+            <input
+                type="number"
+                id="laborHours"
+                min="0.1"
+                step="0.1"
+                placeholder="e.g. 12.5"
+                required
+            >
+
+            <small>
+                Approximate number of hours spent making the product.
+            </small>
+
+        </div>
+
+
+
+        <!-- ================= QUANTITY ================= -->
+
+        <div class="form-group">
+
+            <label for="productQuantity">
+                QUANTITY
+            </label>
+
+            <input
+                type="number"
+                id="productQuantity"
+                min="1"
+                step="1"
+                value="1"
+                required
+            >
+
+        </div>
+
+
+
+        <!-- ================= DIMENSIONS ================= -->
+
+        <div class="form-group">
+
+            <label>
+                PRODUCT DIMENSIONS (cm)
+            </label>
+
+
+            <div
+                style="
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1fr;
+                    gap: 10px;
+                "
+            >
+
+                <input
+                    type="number"
+                    id="productLength"
+                    min="0.1"
+                    step="0.1"
+                    placeholder="Length"
+                    required
+                >
+
+                <input
+                    type="number"
+                    id="productWidth"
+                    min="0.1"
+                    step="0.1"
+                    placeholder="Width"
+                    required
+                >
+
+                <input
+                    type="number"
+                    id="productHeight"
+                    min="0.1"
+                    step="0.1"
+                    placeholder="Height"
+                    required
+                >
+
+            </div>
+
+            <small>
+                Enter approximate length × width × height in centimetres.
+            </small>
+
+        </div>
+
+
+
+        <!-- ================= FINISH ================= -->
+
+        <div class="form-group">
+
+            <label for="finishType">
+                FINISH
+            </label>
+
+            <select
+                id="finishType"
+                required
+            >
+
+                <option value="">
+                    Select finish
+                </option>
+
+                <option value="gloss">
+                    Gloss
+                </option>
+
+                <option value="matte">
+                    Matte
+                </option>
+
+                <option value="melamine">
+                    Melamine
+                </option>
+
+                <option value="natural polish">
+                    Natural Polish
+                </option>
+
+                <option value="pu polish">
+                    PU Polish
+                </option>
+
+                <option value="raw">
+                    Raw
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <!-- ================= URGENCY ================= -->
+
+        <div class="form-group">
+
+            <label for="urgencyLevel">
+                DELIVERY URGENCY
+            </label>
+
+            <select
+                id="urgencyLevel"
+                required
+            >
+
+                <option value="standard">
+                    Standard
+                </option>
+
+                <option value="rush">
+                    Rush
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <!-- ================= EXPECTED PRICE ================= -->
+
+        <div class="form-group">
+
+            <label for="productPrice">
+                YOUR EXPECTED PRICE
+            </label>
+
+            <div class="price-input">
+
+                <span>
+                    ₹
+                </span>
+
+                <input
+                    type="number"
+                    id="productPrice"
+                    placeholder="Optional - your expected price"
+                    min="1"
+                >
+
+            </div>
+
+            <small>
+                Optional. You can enter your own expected price for comparison.
+            </small>
+
+        </div>
+
+
+
+        <!-- ================= LANGUAGE ================= -->
 
         <div class="form-group">
 
             <label for="productLanguage">
-                Catalog Language
+                CATALOG LANGUAGE
             </label>
 
-
-            <select id="productLanguage">
+            <select
+                id="productLanguage"
+            >
 
                 <option value="English">
                     English
@@ -288,20 +627,15 @@
 
 
 
-        <!-- =========================
-             DESCRIPTION
-        ========================== -->
+        <!-- ================= DESCRIPTION ================= -->
 
         <div class="form-group">
 
-
             <div class="label-row">
 
-
                 <label for="description">
-                    Product Description
+                    PRODUCT DESCRIPTION
                 </label>
-
 
                 <button
                     type="button"
@@ -309,11 +643,8 @@
                     class="voice-button"
                     onclick="startVoiceInput()"
                 >
-
                     🎙 Voice
-
                 </button>
-
 
             </div>
 
@@ -323,54 +654,41 @@
                 placeholder="Describe your product..."
             ></textarea>
 
-
         </div>
 
 
 
-        <!-- =========================
-             AI INFORMATION
-        ========================== -->
+        <!-- ================= AI INFORMATION ================= -->
 
         <div class="ai-info-box">
 
-
             <div>
-
 
                 <strong>
                     Smart Catalog AI
                 </strong>
 
-
                 <p>
-
                     Karukriti will prepare your
-                    product description and
+                    product description and use
+                    the pricing AI to estimate a
                     recommended price.
-
                 </p>
 
-
             </div>
-
 
         </div>
 
 
 
-        <!-- =========================
-             GENERATE BUTTON
-        ========================== -->
+        <!-- ================= GENERATE ================= -->
 
         <button
-            class="generate-button"
             type="button"
+            class="generate-button"
             onclick="generateCatalog()"
         >
-
             Generate Smart Catalog →
-
         </button>
 
 
@@ -378,9 +696,7 @@
 
 
 
-    <!-- =========================
-         BOTTOM NAVIGATION
-    ========================== -->
+    <!-- ================= BOTTOM NAVIGATION ================= -->
 
     <nav class="bottom-nav">
 
@@ -389,7 +705,6 @@
 
         <button
             class="nav-item"
-            type="button"
             onclick="goTo('index.html')"
         >
 
@@ -409,7 +724,6 @@
 
         <button
             class="nav-item"
-            type="button"
             onclick="goTo('products.html')"
         >
 
@@ -428,9 +742,9 @@
         <!-- ADD -->
 
         <button
-            class="nav-item nav-add active"
-            type="button"
+            class="nav-add active"
             onclick="goTo('add-product.html')"
+            aria-label="Add Product"
         >
 
             <span>
@@ -445,12 +759,11 @@
 
         <button
             class="nav-item"
-            type="button"
             onclick="goTo('orders.html')"
         >
 
             <span>
-                ▤
+                ♧
             </span>
 
             <small>
@@ -465,12 +778,11 @@
 
         <button
             class="nav-item"
-            type="button"
             onclick="goTo('profile.html')"
         >
 
             <span>
-                ◯
+                ♙
             </span>
 
             <small>
@@ -486,10 +798,6 @@
 </div>
 
 
-
-<!-- =========================
-     JAVASCRIPT
-========================== -->
 
 <script src="script.js"></script>
 
